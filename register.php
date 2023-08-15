@@ -96,8 +96,8 @@
         input {
             margin: 5px 0px;
             outline: none;
-            height: 20px;
             padding: 5px;
+            color:white;
         }
 
         input[type="radio"] {

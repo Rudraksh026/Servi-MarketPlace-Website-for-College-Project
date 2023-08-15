@@ -14,8 +14,7 @@
         }
 
         body {
-            background: url('img/background_index.jpg');
-            background-size: 100vw 100vh;
+            background: url('img/login_signup_background.gif');
             background-repeat: no-repeat;
         }
 
@@ -33,6 +32,7 @@
         .index_left,
         .index_right {
             max-width: 50%;
+            color: white;
         }
 
         h1 {
@@ -48,7 +48,7 @@
 
         button {
             margin: 25px 0px;
-            background-color: #539468;
+            background-color: #094f5f;
             padding: 20px;
             border: none;
             transition: 0.7s ease-in-out;
@@ -60,7 +60,7 @@
         }
 
         button:hover {
-            box-shadow: 7px 7px 0px black;
+            box-shadow: 7px 7px 0px white;
             cursor: pointer;
         }
 

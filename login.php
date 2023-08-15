@@ -16,7 +16,8 @@
         else{
             echo "<script>alert('Invalid Email and Password');</script>";
         }
-    }   
+    }
+      
 ?>
 
 <!DOCTYPE html>

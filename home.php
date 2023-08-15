@@ -9,7 +9,7 @@
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Document</title>
+            <title>Home | ALSP</title>
             <link rel="stylesheet" href="style/bootstrap/bootstrap.min.css">
             <style>
                 @import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
@@ -20,7 +20,6 @@
         body{
             background: url(img/login_signup_background.gif);
             padding-top: 10em;
-            height:10000px;
         }
         
         .main{
@@ -172,10 +171,10 @@
                     <div class="offcanvas-body">
                       <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                         <li class="nav-item">
-                          <a class="nav-link active" aria-current="page" href="Home.html">Home</a>
+                          <a class="nav-link active" aria-current="page" href="Home.php">Home</a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" href="#">Add Your Service</a>
+                          <a class="nav-link" href="addService.php">Add Your Service</a>
                         </li>
                         <li class="nav-item">
                           <a class="nav-link" href="#">Delete Your Service</a>
@@ -224,7 +223,7 @@
                       <div class="right">
                           <h6>Service :- '.$data['service'].'</h6>
                           <h6>Gender :- '.$data['gender'].'</h6>
-                          <h6>amout payable :- '.$data['amount'].'/-per work</h6>
+                          <h6>amout payable :- '.$data['amount'].'/-</h6>
                       </div>
                     </div>
                   
@@ -253,7 +252,7 @@
                             <div class="right">
                               <h6>Service :- '.$data['service'].'</h6>
                               <h6>Gender :- '.$data['gender'].'</h6>
-                              <h6>amout payable :- '.$data['amount'].'/-per work</h6>
+                              <h6>amout payable :- '.$data['amount'].'/-</h6>
                             </div>
                           </div>
                         

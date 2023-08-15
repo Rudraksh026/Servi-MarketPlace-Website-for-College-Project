@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 14, 2023 at 12:51 PM
+-- Generation Time: Aug 15, 2023 at 02:51 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `user_details`
 --
-CREATE DATABASE IF NOT EXISTS `user_details` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `user_details`;
 
 -- --------------------------------------------------------
 
@@ -40,13 +38,12 @@ CREATE TABLE `user_detail` (
   `created on` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-
 --
--- Table structure for table `service_detail`
+-- Dumping data for table `user_detail`
 --
 
-CREATE TABLE `user_details`.`service_details` (`sno` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(30) NOT NULL , `email` VARCHAR(70) NOT NULL , `gender` CHAR(1) NOT NULL , `number` BIGINT NOT NULL , `location` VARCHAR(50) NOT NULL , `service` VARCHAR(70) NOT NULL , `amount` BIGINT NOT NULL , PRIMARY KEY (`sno`)) ENGINE = InnoDB;
-
+INSERT INTO `user_detail` (`sno`, `name`, `birthday`, `gender`, `email`, `number`, `password`, `created on`) VALUES
+(25, 'Rudra', '2006-09-26', 'M', 'rudrakshmishra026@gmail.com', 8755443383, 'rm 260905', current_timestamp());
 
 --
 -- Indexes for dumped tables
@@ -67,7 +64,7 @@ ALTER TABLE `user_detail`
 -- AUTO_INCREMENT for table `user_detail`
 --
 ALTER TABLE `user_detail`
-  MODIFY `sno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `sno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
