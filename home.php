@@ -3,6 +3,7 @@
 <?php
     session_start();
     include "dp.php";
+    $popup = "popup";
     if(isset($_SESSION['adminName'])){
         echo '
         <head>
@@ -19,6 +20,7 @@
         body{
             background: url(img/login_signup_background.gif);
             padding-top: 10em;
+            height:10000px;
         }
         
         .main{
@@ -76,6 +78,58 @@
       .sorry{
           margin-top: 70px;
       }
+
+      .popup{
+        display: none;
+      position: fixed;
+      padding: 10px;
+      left: 50%;
+      top: 0;
+      margin: 200px 0px 0px -160px;
+      background: #FFF;
+      z-index: 20;
+    }
+    .pop_head{
+        width: 100%;
+        display: block;
+        margin: auto;
+        padding: 10px;
+    }
+    
+    .logo{
+        width: 150px;
+    }
+    
+    .details{
+        font-family: "Varela Round", sans-serif;
+    }
+    
+    .details h5{
+        margin: 10px 0px;
+    }
+    
+    
+    #popup:after {
+        position: fixed;
+        content: "";
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background: rgba(0,0,0,0.5);
+        z-index: -2;
+      }
+      
+      #popup:before {
+        position: absolute;
+        content: "";
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background: #fff;
+        z-index: -1;
+      }
         
         @media (max-width:1000px) {
             .container,.nodata{
@@ -90,13 +144,17 @@
             .left,.right{
                 width: 100%;
             }
+            .popup{
+              left: 0%;
+              margin: 200px 0px;
+            }
         }
             </style>
         </head>
         <body>
             <nav class="navbar bg-body-tertiary fixed-top">
                 <div class="container-fluid">
-                  <a class="navbar-brand" href="Home.html">Find all Services</a>
+                  <a class="navbar-brand" href="Home.php"><img class="logo" src="img/logo.png" alt=""></a>
                   <!-- search bar -->
                   <form class="d-flex mt-3" role="search" action="home.php" method="post">
                     <input class="form-control me-2" type="text" placeholder="Search" name="search" aria-label="Search">
@@ -132,7 +190,23 @@
                   </div>
                 </div>
               </nav>
+              <div id="popup" class="popup">
+        <img src="img/logo.png" class="pop_head logo"><br>
+        <div class="details">
+          <h5>Provider Name :- <span class="output"></span></h5>
+          <h5>Gender :- <span class="output"></span></h5>
+          <h5>Service Providing :- <span class="output"></span></h5>
+          <h5>Phone no :- <span class="output"></span></h5>
+          <h5>Email :- <span class="output"></span></h5>
+          <h5>Location :- <span class="output"></span></h5>
+          <h5>Amount to pay :- <span class="output"></span></h5>
+          <button class="button button2" onclick="hide()">Close</button>
+        </div>
+        </div>
+              
               <script src="javaScript/bootstrap/bootstrap.min.js"></script>
+              <script src="javaScript/script.js"></script>
+              <div class="main">
         ';
         if($_SERVER["REQUEST_METHOD"] == "POST"){
             $search = $_POST['search'];
@@ -141,11 +215,11 @@
             $row = mysqli_num_rows($result);
             if($row>0){
                 while ($data = mysqli_fetch_assoc($result) ){
-                    echo '<div class="main">
+                    echo '
                     <div class="container">
                       <div class="left">
                           <h6>'.$data['name'].'</h6>
-                          <button>Contact Now</button>
+                          <button class="button button1"  onclick="show(\''.$data['name'].'\',\''.$data['gender'].'\',\''.$data['service'].'\',\''.$data['number'].'\',\''.$data['email'].'\',\''.$data['location'].'\',\''.$data['amount'].'\')">See Details</button>
                       </div>
                       <div class="right">
                           <h6>Service :- '.$data['service'].'</h6>
@@ -153,7 +227,9 @@
                           <h6>amout payable :- '.$data['amount'].'/-per work</h6>
                       </div>
                     </div>
-                  </div>';
+                  
+                  
+                  ';
                 }
             }
             else
@@ -168,19 +244,21 @@
             $row = mysqli_num_rows($result);
             if($row>0){
                 while ($data = mysqli_fetch_assoc($result) ){
-                    echo '<div class="main">
-                    <div class="container">
-                      <div class="left">
-                          <h6>'.$data['name'].'</h6>
-                          <button>Contact Now</button>
-                      </div>
-                      <div class="right">
-                          <h6>Service :- '.$data['service'].'</h6>
-                          <h6>Gender :- '.$data['gender'].'</h6>
-                          <h6>amout payable :- '.$data['amount'].'/-per work</h6>
-                      </div>
-                    </div>
-                  </div>';
+                    echo '
+                            <div class="container">
+                              <div class="left">
+                                <h6>'.$data['name'].'</h6>
+                                <button class="button button1"  onclick="show(\''.$data['name'].'\',\''.$data['gender'].'\',\''.$data['service'].'\',\''.$data['number'].'\',\''.$data['email'].'\',\''.$data['location'].'\',\''.$data['amount'].'\')">See Details</button>
+                              </div>
+                            <div class="right">
+                              <h6>Service :- '.$data['service'].'</h6>
+                              <h6>Gender :- '.$data['gender'].'</h6>
+                              <h6>amout payable :- '.$data['amount'].'/-per work</h6>
+                            </div>
+                          </div>
+                        
+                        
+                        ';
                 }
             }
             else
@@ -189,6 +267,8 @@
                 <h3 class = "right sorry">Sorry, No Data is found.</h3>
               </div>';
         }
+      
+        echo '</div>';
     }
     else
       header("location: login.php");
