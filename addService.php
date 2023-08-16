@@ -10,7 +10,6 @@
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>ADD SERVICE | ALSP</title>
             <link rel="stylesheet" href="style/bootstrap/bootstrap.min.css">
-            <link rel="stylesheet" href="style/style.css">
             <style>
                 @import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
         *{
@@ -113,7 +112,7 @@
                   </button>
                   <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
                     <div class="offcanvas-header">
-                      <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Find all Services</h5>
+                      <h5 class="offcanvas-title" id="offcanvasNavbarLabel" style="color:black;">Welcome, '.$_SESSION["adminName"].' on ALSP</h5>
                       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
                     <div class="offcanvas-body">
@@ -125,7 +124,7 @@
                           <a class="nav-link" href="addYourService.php">Add Your Service</a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" href="#">Delete Your Service</a>
+                          <a class="nav-link" href="deleteService.php">Delete Your Service</a>
                         </li>
                         <li class="nav-item">
                           <a class="nav-link" href="logout.php">Log Out</a>
@@ -148,7 +147,7 @@
                     </div>
                     <div>
                         <label for="lname">Last Name<br></label>
-                        <input type="text" id="lname" name="lname" required>
+                        <input type="text" id="lname" name="lname">
                     </div>
                     <div>
                         <label for="amount">Amount<br></label>
@@ -190,11 +189,12 @@
                     </div>
                     <div>
                         <label for="location">Location<br></label>
-                        <input type="text" id="location" name="location" required>
+                        <input type="text" id="location" name="location"  required>
                     </div>
-                    <button>Add Service</button>
+                    <button>Edit Service</button>
                 </form>
             </div>
+             
                 
         
               <script src="javaScript/bootstrap/bootstrap.min.js"></script>
@@ -210,14 +210,10 @@
             $sql = "INSERT INTO `service_details` (`name`, `email`, `gender`, `number`, `location`, `service`, `amount`) VALUES ('$name', '$email', '$gender', $number, '$location', '$service', $amount);";
             $result = mysqli_query($conn,$sql);
             if($result){
-                echo '<div class="success success-warning success-dismissible fade show" role="alert">
-                <strong>Successfully!</strong> You can now find it on the home page.
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>';
+                echo '<script>alert("Entry Inserted Successfully...");</script>';
             }
         }
+        
     }
     else
       header("location: login.php");

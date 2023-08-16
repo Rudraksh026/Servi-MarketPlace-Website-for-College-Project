@@ -165,7 +165,7 @@
                   </button>
                   <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
                     <div class="offcanvas-header">
-                      <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Find all Services</h5>
+                      <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Welcome, '.$_SESSION["adminName"].' on ALSP</h5>
                       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
                     <div class="offcanvas-body">
@@ -177,7 +177,7 @@
                           <a class="nav-link" href="addService.php">Add Your Service</a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" href="#">Delete Your Service</a>
+                          <a class="nav-link" href="deleteService.php">Delete Your Service</a>
                         </li>
                         <li class="nav-item">
                           <a class="nav-link" href="logout.php">Log Out</a>
