@@ -193,7 +193,7 @@
                         <label for="location">Location<br></label>
                         <input type="text" id="location" name="location"  required>
                     </div>
-                    <button>Edit Service</button>
+                    <button>Add Service</button>
                 </form>
             </div>
              
