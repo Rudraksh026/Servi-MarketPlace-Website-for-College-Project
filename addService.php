@@ -185,6 +185,8 @@
                             <option value="music_Academy">Music Academy</option>
                             <option value="dance_Academy">Dance Academy</option>
                             <option value="Freelancer">Freelancer</option>
+                            <option value="Carpentar">Carpentar</option>
+                            <option value="Delivery">Delivery</option>
                         </select>
                     </div>
                     <div>
