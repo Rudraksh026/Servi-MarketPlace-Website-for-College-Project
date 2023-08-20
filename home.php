@@ -3,7 +3,6 @@
 <?php
     session_start();
     include "dp.php";
-    $popup = "popup";
     if(isset($_SESSION['adminName'])){
         echo '
         <head>
@@ -25,13 +24,14 @@
         .main{
             display: flex;
             flex-wrap: wrap;
+            justify-content: center;
         }
         
         .container{
             background:transparent ;
             color: white;
             width: 45%;
-            margin: 25px auto;
+            margin: 25px 10px;
             display: flex;
             border: 2px solid white;
             border-radius: 15px;
@@ -129,11 +129,20 @@
         background: #fff;
         z-index: -1;
       }
+      .sort{
+        width: 45%;
+        color: white;
+        margin: auto;
+      }
+
         
         @media (max-width:1000px) {
             .container,.nodata{
                 width: 100%;
             }
+            .left,.right{
+              width: 100%;
+          } 
         }
         
         @media (max-width:400px) {
@@ -156,7 +165,7 @@
                   <a class="navbar-brand" href="Home.php"><img class="logo" src="img/logo.png" alt=""></a>
                   <!-- search bar -->
                   <form class="d-flex mt-3" role="search" action="home.php" method="post">
-                    <input class="form-control me-2" type="text" placeholder="Search" name="search" aria-label="Search">
+                    <input class="form-control me-2" id="search" type="text" placeholder="Search" name="search" aria-label="Search">
                     <button class="btn btn-outline-success">Search</button>
                   </form>
                   <!-- search bar end -->
@@ -205,16 +214,36 @@
               
               <script src="javaScript/bootstrap/bootstrap.min.js"></script>
               <script src="javaScript/script.js"></script>
-              <div class="main">
+              
+          
+      </div>
         ';
-        if($_SERVER["REQUEST_METHOD"] == "POST"){
+        if(isset($_POST['search']) && !isset($_POST['sort'])){
             $search = $_POST['search'];
+            
             $sql = "SELECT * FROM `service_details` WHERE `service` = '$search';";
+
             $result = mysqli_query($conn,$sql);
             $row = mysqli_num_rows($result);
+          
             if($row>0){
+              echo '<div class="sort">
+              <form action="home.php" method="post">
+              <label for="sort">sort by</label>
+              <select name="sort" id="sort">
+                <option value="none" selected disabled hidden>Select an Option</option>
+                <option value="ASC"><button>low to high</button></option>
+                <option value="DESC">high to low</option>
+              </select>
+              <input type = "text" name="sortSearch"  value="'.$search.'" style="display:none;">
+              <button style="border:0px;background:none;"><img src="img/search_icon.png" alt="" style="width:45px;"></button>
+            </form>
+            <hr>
+            </div>
+              <div class="main">';
                 while ($data = mysqli_fetch_assoc($result) ){
                     echo '
+                    
                     <div class="container">
                       <div class="left">
                           <h6>'.$data['name'].'</h6>
@@ -231,17 +260,72 @@
                   ';
                 }
             }
+          
             else
                 echo '<div class="nodata">
                 <img class="left" src="img/nodata.gif" alt="" width="50%">
-                <h3 class = "right sorry">Sorry, No Data is found.</h3>
+                <h3 class = "right sorry">Sorry, No Service is found in your area.</h3>
+              </div>';
+          
+          
+        }
+
+        elseif(isset($_POST['sort']) ){
+          $sort = $_POST['sort'];
+          $search = $_POST['sortSearch'];
+            $sql = "SELECT * FROM `service_details` WHERE `service` = '$search' ORDER BY `amount` $sort";
+
+            $result = mysqli_query($conn,$sql);
+            $row = mysqli_num_rows($result);
+          
+            if($row>0){
+              echo '<div class="sort">
+              <form action="home.php" method="post">
+              <label for="sort">sort by</label>
+              <select name="sort" id="sort">
+                <option value="none" selected disabled hidden>Select an Option</option>
+                <option value="ASC"><button>low to high</button></option>
+                <option value="DESC">high to low</option>
+              </select>
+              <input type = "text" name="sortSearch"  value="'.$search.'" style="display:none;">
+              <button style="border:0px;background:none;"><img src="img/search_icon.png" alt="" style="width:45px;"></button>
+            </form>
+            <hr>
+            </div>
+              <div class="main">';
+                while ($data = mysqli_fetch_assoc($result) ){
+                    echo '
+                    
+                    <div class="container">
+                      <div class="left">
+                          <h6>'.$data['name'].'</h6>
+                          <button class="button button1"  onclick="show(\''.$data['name'].'\',\''.$data['gender'].'\',\''.$data['service'].'\',\''.$data['number'].'\',\''.$data['email'].'\',\''.$data['location'].'\',\''.$data['amount'].'\')">See Details</button>
+                      </div>
+                      <div class="right">
+                          <h6>Service :- '.$data['service'].'</h6>
+                          <h6>Gender :- '.$data['gender'].'</h6>
+                          <h6>amout payable :- '.$data['amount'].'/-</h6>
+                      </div>
+                    </div>
+                  
+                  
+                  ';
+                }
+            }
+          
+            else
+                echo '<div class="nodata">
+                <img class="left" src="img/nodata.gif" alt="" width="50%">
+                <h3 class = "right sorry">Sorry, No service is found in your area.</h3>
               </div>';
         }
+
         else{
-            $sql = "SELECT * FROM `service_details` LIMIT 10;";
+            $sql = "SELECT * FROM `service_details` LIMIT 20;";
             $result = mysqli_query($conn,$sql);
             $row = mysqli_num_rows($result);
             if($row>0){
+              echo '<div class="main">';
                 while ($data = mysqli_fetch_assoc($result) ){
                     echo '
                             <div class="container">
@@ -263,7 +347,7 @@
             else
                 echo '<div class="nodata">
                 <img class="left" src="img/nodata.gif" alt="" width="50%">
-                <h3 class = "right sorry">Sorry, No Data is found.</h3>
+                <h3 class = "right sorry">Sorry, No service is found in our area.</h3>
               </div>';
         }
       

@@ -15,3 +15,7 @@ function hide() {
   document.getElementById("popup").style.display = ("none");
   //   popup.style.display ='none';
 }
+
+function sort(search){
+  document.getElementById('search').value = (search);
+}
