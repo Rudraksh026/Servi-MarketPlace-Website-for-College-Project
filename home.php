@@ -18,7 +18,7 @@
         }
         body{
             background: url(img/login_signup_background.gif);
-            padding-top: 10em;
+            padding-top: 15em;
         }
         
         .main{
@@ -84,8 +84,7 @@
       padding: 10px;
       left: 50%;
       top: 0;
-      margin: 200px 0px 0px -160px;
-      background: #FFF;
+      margin: 150px 0px 0px -160px;
       z-index: 20;
     }
     .pop_head{
@@ -96,7 +95,7 @@
     }
     
     .logo{
-        width: 150px;
+        width: 90px;
     }
     
     .details{
@@ -115,7 +114,7 @@
         left: 0;
         bottom: 0;
         right: 0;
-        background: rgba(0,0,0,0.5);
+        background: rgba(0,0,0,0.86);
         z-index: -2;
       }
       
@@ -128,6 +127,7 @@
         right: 0;
         background: #fff;
         z-index: -1;
+        border-radius: 15px;
       }
       .sort{
         width: 45%;
@@ -160,47 +160,13 @@
             </style>
         </head>
         <body>
-            <nav class="navbar bg-body-tertiary fixed-top">
-                <div class="container-fluid">
-                  <a class="navbar-brand" href="Home.php"><img class="logo" src="img/logo.png" alt=""></a>
-                  <!-- search bar -->
-                  <form class="d-flex mt-3" role="search" action="home.php" method="post">
-                    <input class="form-control me-2" id="search" type="text" placeholder="Search" name="search" aria-label="Search">
-                    <button class="btn btn-outline-success">Search</button>
-                  </form>
-                  <!-- search bar end -->
-                  <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                  </button>
-                  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-                    <div class="offcanvas-header">
-                      <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Welcome, '.$_SESSION["adminName"].' on ALSP</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                    </div>
-                    <div class="offcanvas-body">
-                      <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                        <li class="nav-item">
-                          <a class="nav-link active" aria-current="page" href="Home.php">Home</a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" href="addService.php">Add Your Service</a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" href="deleteService.php">Delete Your Service</a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" href="logout.php">Log Out</a>
-                        </li>
-                        
-                      </ul>
-                      
-                    </div>
-                  </div>
-                </div>
-              </nav>
+            ';
+            include "nav.php";
+            echo '
               <div id="popup" class="popup">
-        <img src="img/logo.png" class="pop_head logo"><br>
+        <img src="img/icon.png" class="pop_head logo"><br>
         <div class="details">
+          <img id="profile" src="" width= 150px height="150px">
           <h5>Provider Name :- <span class="output"></span></h5>
           <h5>Gender :- <span class="output"></span></h5>
           <h5>Service Providing :- <span class="output"></span></h5>
@@ -211,9 +177,8 @@
           <button class="button button2" onclick="hide()">Close</button>
         </div>
         </div>
-              
               <script src="javaScript/bootstrap/bootstrap.min.js"></script>
-              <script src="javaScript/script.js"></script>
+              
               
           
       </div>
@@ -247,7 +212,7 @@
                     <div class="container">
                       <div class="left">
                           <h6>'.$data['name'].'</h6>
-                          <button class="button button1"  onclick="show(\''.$data['name'].'\',\''.$data['gender'].'\',\''.$data['service'].'\',\''.$data['number'].'\',\''.$data['email'].'\',\''.$data['location'].'\',\''.$data['amount'].'\')">See Details</button>
+                          <button class="button button1"  onclick="show(\''.$data['name'].'\',\''.$data['gender'].'\',\''.$data['service'].'\',\''.$data['number'].'\',\''.$data['email'].'\',\''.$data['location'].'\',\''.$data['amount'].'\',\''.$data['image_url'].'\')">See Details</button>
                       </div>
                       <div class="right">
                           <h6>Service :- '.$data['service'].'</h6>
@@ -299,7 +264,7 @@
                     <div class="container">
                       <div class="left">
                           <h6>'.$data['name'].'</h6>
-                          <button class="button button1"  onclick="show(\''.$data['name'].'\',\''.$data['gender'].'\',\''.$data['service'].'\',\''.$data['number'].'\',\''.$data['email'].'\',\''.$data['location'].'\',\''.$data['amount'].'\')">See Details</button>
+                          <button class="button button1"  onclick="show(\''.$data['name'].'\',\''.$data['gender'].'\',\''.$data['service'].'\',\''.$data['number'].'\',\''.$data['email'].'\',\''.$data['location'].'\',\''.$data['amount'].'\',\''.$data['image_url'].'\')">See Details</button>
                       </div>
                       <div class="right">
                           <h6>Service :- '.$data['service'].'</h6>
@@ -331,7 +296,7 @@
                             <div class="container">
                               <div class="left">
                                 <h6>'.$data['name'].'</h6>
-                                <button class="button button1"  onclick="show(\''.$data['name'].'\',\''.$data['gender'].'\',\''.$data['service'].'\',\''.$data['number'].'\',\''.$data['email'].'\',\''.$data['location'].'\',\''.$data['amount'].'\')">See Details</button>
+                                <button class="button button1"  onclick="show(\''.$data['name'].'\',\''.$data['gender'].'\',\''.$data['service'].'\',\''.$data['number'].'\',\''.$data['email'].'\',\''.$data['location'].'\',\''.$data['amount'].'\',\''.$data['image_url'].'\')">See Details</button>
                               </div>
                             <div class="right">
                               <h6>Service :- '.$data['service'].'</h6>
@@ -357,5 +322,30 @@
       header("location: login.php");
 
 ?>
+<script>
+  function show(name,gender,service,number,email,location,amount,image) {
+  change = "block";
+  document.getElementById("popup").style.display = ("block");
+  var data = [name,gender,service,number,email,location,amount];
+  var i=0;
+  while(i<data.length){
+      document.getElementsByClassName("output")[i].innerHTML = (data[i]);
+      i++;
+  }
+  //   popup.style.display ='block';
+  var i = "uploads/"+image;
+  document.getElementById("profile").src = (i);
+}
+function hide() {
+  change = "none";
+  document.getElementById("popup").style.display = ("none");
+  //   popup.style.display ='none';
+}
+
+function sort(search){
+  document.getElementById('search').value = (search);
+}
+</script>
+
 </body>
 </html>

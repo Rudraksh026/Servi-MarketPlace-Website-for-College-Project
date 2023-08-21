@@ -1,12 +1,16 @@
-function show(name,gender,service,number,email,location,amount) {
+function show(name,gender,service,number,email,location,amount,image) {
   change = "block";
   document.getElementById("popup").style.display = ("block");
   var data = [name,gender,service,number,email,location,amount];
   var i=0;
+  
   while(i<data.length){
       document.getElementsByClassName("output")[i].innerHTML = (data[i]);
       i++;
   }
+  console.log(image);
+  var i = "uploads/"+image;
+  document.getElementById("profile").src = (i);
   //   popup.style.display ='block';
     
 }
