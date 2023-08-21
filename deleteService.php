@@ -149,8 +149,10 @@ a:hover{
 
   if ($_SERVER["REQUEST_METHOD"] == "POST")  {
     $del = $_POST["sno"];
-    
+    $img = $_POST["image"];
     $sql2 = "DELETE FROM `service_details` WHERE `sno` = ('$del');";
+    $del_location = "uploads/".$img;
+    unlink($del_location);    
     $result2 = mysqli_query($conn, $sql2);
     if ($result2) {
       $sql = "SELECT * FROM `service_details` WHERE `email` = '$email';";
@@ -199,7 +201,7 @@ a:hover{
       else {
         echo '<div class="nodata">
                   <img class="left" src="img/nodata.gif" alt="" width="50%">
-                  <h3 class = "right sorry">Sorry, No Data is found.</h3>
+                  <h3 class = "right sorry">Sorry, No Service Added By You.</h3>
                 </div>';
       }
     }
@@ -223,8 +225,10 @@ a:hover{
                     </tr>';
       $i = 0;
       $arr = array();
+      $arr2 = array();
       while ($data = mysqli_fetch_assoc($result)) {
         array_push($arr, $data['sno']);
+        array_push($arr2, $data['image_url']);
         echo '<tr>
                             <td>' . $data['service'] . '</td>
                             <td>' . $data['amount'] . '</td>
@@ -238,6 +242,7 @@ a:hover{
                             <td>
                               <form action="deleteService.php" method="post">
                               <input type="number" name="sno" value="' . $arr[$i] . '" >
+                              <input type="text" name="image" value="' . $arr2[$i] . '" >
                                 <button><i class="material-icons">delete</i></button>
                               </form>
                             </td>
@@ -250,7 +255,7 @@ a:hover{
     else {
       echo '<div class="nodata">
                 <img class="left" src="img/nodata.gif" alt="" width="50%">
-                <h3 class = "right sorry">Sorry, No Data is found.</h3>
+                <h3 class = "right sorry">Sorry, No Service Added By You.</h3>
               </div>';
     }
   }

@@ -185,8 +185,10 @@
         ';
         if(isset($_POST['search']) && !isset($_POST['sort'])){
             $search = $_POST['search'];
-            
-            $sql = "SELECT * FROM `service_details` WHERE `service` = '$search';";
+            $sql = 'SELECT `location` FROM `user_detail` WHERE `email` = "'.$_SESSION['email'].'";';
+          $result = mysqli_query($conn,$sql);
+          $data = mysqli_fetch_assoc($result);
+            $sql = "SELECT * FROM `service_details` WHERE `service` = '$search' AND `location` = '".$data['location']."';";
 
             $result = mysqli_query($conn,$sql);
             $row = mysqli_num_rows($result);
@@ -238,7 +240,10 @@
         elseif(isset($_POST['sort']) ){
           $sort = $_POST['sort'];
           $search = $_POST['sortSearch'];
-            $sql = "SELECT * FROM `service_details` WHERE `service` = '$search' ORDER BY `amount` $sort";
+          $sql = 'SELECT `location` FROM `user_detail` WHERE `email` = "'.$_SESSION['email'].'";';
+          $result = mysqli_query($conn,$sql);
+          $data = mysqli_fetch_assoc($result);
+            $sql = "SELECT * FROM `service_details` WHERE `service` = '$search' AND `location` = '".$data['location']."' ORDER BY `amount` $sort";
 
             $result = mysqli_query($conn,$sql);
             $row = mysqli_num_rows($result);
@@ -286,7 +291,10 @@
         }
 
         else{
-            $sql = "SELECT * FROM `service_details` LIMIT 20;";
+          $sql = 'SELECT `location` FROM `user_detail` WHERE `email` = "'.$_SESSION['email'].'";';
+          $result = mysqli_query($conn,$sql);
+          $data = mysqli_fetch_assoc($result);
+            $sql = "SELECT * FROM `service_details` WHERE `location` = '".$data['location']."' LIMIT 20;";
             $result = mysqli_query($conn,$sql);
             $row = mysqli_num_rows($result);
             if($row>0){
