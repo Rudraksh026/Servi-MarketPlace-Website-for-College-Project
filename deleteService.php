@@ -173,8 +173,9 @@ a:hover{
                   </tr>';
         $i = 0;
         $arr = array();
+        $arr2 = array();
         while ($data = mysqli_fetch_assoc($result)) {
-
+          array_push($arr2, $data['image_url']);
           array_push($arr, $data['sno']);
           echo '<tr>
                           <td>' . $data['service'] . '</td>
