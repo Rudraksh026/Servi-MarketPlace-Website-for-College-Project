@@ -1,28 +1,5 @@
-<?php
-    include 'dp.php';
-    if($_SERVER["REQUEST_METHOD"] == "POST"){
-        $email = $_POST['email'];
-        $password = $_POST['password'];
-        $sql = "SELECT * FROM `user_detail` WHERE `email` = '$email' and `password` = '$password';";
-        $result = mysqli_query($conn,$sql);
-        $row = mysqli_num_rows($result);
-        if($row>0){
-            $data = mysqli_fetch_assoc($result);
-            session_start();
-            $_SESSION['email'] = $email;
-            $_SESSION['adminName'] = $data['name'];
-            header("location: home.php");
-        }
-        else{
-            echo "<script>alert('Invalid Email and Password');</script>";
-        }
-    }
-      
-?>
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -120,6 +97,29 @@
             <h5>Don't have an account? <a href="register.php">Register</a></h5>
         </div>
     </div>
+    <script src="javaScript/sweetalert.mn.js"></script>
 </body>
 
 </html>
+
+<?php
+    include 'dp.php';
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+        $sql = "SELECT * FROM `user_detail` WHERE `email` = '$email' and `password` = '$password';";
+        $result = mysqli_query($conn,$sql);
+        $row = mysqli_num_rows($result);
+        if($row>0){
+            $data = mysqli_fetch_assoc($result);
+            session_start();
+            $_SESSION['email'] = $email;
+            $_SESSION['adminName'] = $data['name'];
+            header("location: home.php");
+        }
+        else{
+            echo '<script>swal ( "Oops" ,  "Invalid Email and Password!" ,  "error" );</script>';
+        }
+    }
+      
+?>

@@ -30,7 +30,7 @@
         .container{
             background:transparent ;
             color: white;
-            width: 45%;
+            width: 30%;
             margin: 25px 10px;
             display: flex;
             border: 2px solid white;
@@ -42,7 +42,7 @@
         }
         
         .left{
-            width: 30%;
+            width: 40%;
         }
         
         h6{
@@ -50,7 +50,7 @@
         }
         
         .right{
-            width: 70%;
+            width: 60%;
         }
         
         button {
@@ -84,7 +84,7 @@
       padding: 10px;
       left: 50%;
       top: 0;
-      margin: 150px 0px 0px -160px;
+      margin: 100px 0px 0px -160px;
       z-index: 20;
     }
     .pop_head{
@@ -209,17 +209,21 @@
             </div>
               <div class="main">';
                 while ($data = mysqli_fetch_assoc($result) ){
+                  $img = "uploads/".$data['image_url'];
                     echo '
                     
                     <div class="container">
                       <div class="left">
-                          <h6>'.$data['name'].'</h6>
-                          <button class="button button1"  onclick="show(\''.$data['name'].'\',\''.$data['gender'].'\',\''.$data['service'].'\',\''.$data['number'].'\',\''.$data['email'].'\',\''.$data['location'].'\',\''.$data['amount'].'\',\''.$data['image_url'].'\')">See Details</button>
+                      <img src="'.$img.'" alt="" width="100%" height="100%" style="display: block; margin: auto;">
+                          
+                          
                       </div>
                       <div class="right">
-                          <h6>Service :- '.$data['service'].'</h6>
-                          <h6>Gender :- '.$data['gender'].'</h6>
-                          <h6>amout payable :- '.$data['amount'].'/-</h6>
+                          <h6>'.$data['name'].'</h6>
+                          <h6>'.$data['service'].'</h6>
+                          <h6>'.$data['gender'].'</h6>
+                          <h6>'.$data['amount'].'/-</h6>
+                          <button class="button button1"  onclick="show(\''.$data['name'].'\',\''.$data['gender'].'\',\''.$data['service'].'\',\''.$data['number'].'\',\''.$data['email'].'\',\''.$data['location'].'\',\''.$data['amount'].'\',\''.$data['image_url'].'\')">See Details</button>
                       </div>
                     </div>
                   
@@ -264,22 +268,26 @@
             </div>
               <div class="main">';
                 while ($data = mysqli_fetch_assoc($result) ){
-                    echo '
+                  $img = "uploads/".$data['image_url'];
+                  echo '
                     
-                    <div class="container">
-                      <div class="left">
-                          <h6>'.$data['name'].'</h6>
-                          <button class="button button1"  onclick="show(\''.$data['name'].'\',\''.$data['gender'].'\',\''.$data['service'].'\',\''.$data['number'].'\',\''.$data['email'].'\',\''.$data['location'].'\',\''.$data['amount'].'\',\''.$data['image_url'].'\')">See Details</button>
-                      </div>
-                      <div class="right">
-                          <h6>Service :- '.$data['service'].'</h6>
-                          <h6>Gender :- '.$data['gender'].'</h6>
-                          <h6>amout payable :- '.$data['amount'].'/-</h6>
-                      </div>
+                  <div class="container">
+                    <div class="left">
+                    <img src="'.$img.'" alt="" width="100%" height="100%" style="display: block; margin: auto;">
+                        
+                        
                     </div>
-                  
-                  
-                  ';
+                    <div class="right">
+                        <h6>'.$data['name'].'</h6>
+                        <h6>'.$data['service'].'</h6>
+                        <h6>'.$data['gender'].'</h6>
+                        <h6>'.$data['amount'].'/-</h6>
+                        <button class="button button1"  onclick="show(\''.$data['name'].'\',\''.$data['gender'].'\',\''.$data['service'].'\',\''.$data['number'].'\',\''.$data['email'].'\',\''.$data['location'].'\',\''.$data['amount'].'\',\''.$data['image_url'].'\')">See Details</button>
+                    </div>
+                  </div>
+                
+                
+                ';
                 }
             }
           
@@ -300,21 +308,26 @@
             if($row>0){
               echo '<div class="main">';
                 while ($data = mysqli_fetch_assoc($result) ){
-                    echo '
-                            <div class="container">
-                              <div class="left">
-                                <h6>'.$data['name'].'</h6>
-                                <button class="button button1"  onclick="show(\''.$data['name'].'\',\''.$data['gender'].'\',\''.$data['service'].'\',\''.$data['number'].'\',\''.$data['email'].'\',\''.$data['location'].'\',\''.$data['amount'].'\',\''.$data['image_url'].'\')">See Details</button>
-                              </div>
-                            <div class="right">
-                              <h6>Service :- '.$data['service'].'</h6>
-                              <h6>Gender :- '.$data['gender'].'</h6>
-                              <h6>amout payable :- '.$data['amount'].'/-</h6>
-                            </div>
-                          </div>
+                  $img = "uploads/".$data['image_url'];
+                  echo '
+                    
+                  <div class="container">
+                    <div class="left">
+                    <img src="'.$img.'" alt="" width="100%" height="100%" style="display: block; margin: auto;">
                         
                         
-                        ';
+                    </div>
+                    <div class="right">
+                        <h6>'.$data['name'].'</h6>
+                        <h6>'.$data['service'].'</h6>
+                        <h6>'.$data['gender'].'</h6>
+                        <h6>'.$data['amount'].'/-</h6>
+                        <button class="button button1"  onclick="show(\''.$data['name'].'\',\''.$data['gender'].'\',\''.$data['service'].'\',\''.$data['number'].'\',\''.$data['email'].'\',\''.$data['location'].'\',\''.$data['amount'].'\',\''.$data['image_url'].'\')">See Details</button>
+                    </div>
+                  </div>
+                
+                
+                ';
                 }
             }
             else

@@ -140,6 +140,7 @@ a:hover{
               console.log(data);
               }
             </script>
+            <script src="javaScript/sweetalert.mn.js"></script>
         </head>
         <body>
             ';
@@ -155,6 +156,7 @@ a:hover{
     unlink($del_location);    
     $result2 = mysqli_query($conn, $sql2);
     if ($result2) {
+      echo '<script>swal("Entry Deleted Successfully!","", "success");</script>';
       $sql = "SELECT * FROM `service_details` WHERE `email` = '$email';";
       $result = mysqli_query($conn, $sql);
       $row = mysqli_num_rows($result);
@@ -190,6 +192,7 @@ a:hover{
                           <td>
                             <form action="deleteService.php" method="post">
                               <input type="number" name="sno" value="' . $arr[$i] . '" >
+                              <input type="text" name="image" value="' . $arr2[$i] . '" >
                               <button><i class="material-icons">delete</i></button>
                             </form>
                           </td>

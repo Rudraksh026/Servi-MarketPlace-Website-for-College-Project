@@ -1,38 +1,3 @@
-<?php
-    include 'dp.php';
-    if($_SERVER["REQUEST_METHOD"] == "POST"){
-        $name= $_POST['fname'];
-        $birthday = $_POST['birthday'];
-        $gender = $_POST['gender'];
-        $email = $_POST['email'];
-        $number = $_POST['number'];
-        $password = $_POST['password'];
-        $cpassword = $_POST['cpassword'];
-        $location = $_POST['location'];
-        $sql = "SELECT * FROM `user_detail` WHERE `email` LIKE '$email';";
-        $result = mysqli_query($conn,$sql);
-        $rows = mysqli_num_rows($result);
-        if($password == $cpassword && $rows == 0){
-
-        // insert into database
-            $sql = "INSERT INTO `user_detail` ( `name`, `birthday`, `gender`, `email`, `number`, `password`, `created on`,`location`) VALUES ( '$name', '$birthday', '$gender', '$email', '$number', '$password', current_timestamp(),'$location');";
-            $result = mysqli_query($conn,$sql);
-            if($result){   
-                session_start();
-                $_SESSION['adminName'] = $name;
-                $_SESSION['email']= $email;
-                header("location: home.php");
-                
-            }
-        }
-        else if($password != $cpassword){
-            echo "<Script>alert('Password must be same');</script>";
-        }
-        else{
-            echo "<Script>alert('Account had already exists');</script>";
-        }
-    }
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -175,6 +140,43 @@
                 <button>Register</button>
         </form>
     </div>
+    <script src="javaScript/sweetalert.mn.js"></script>
 </body>
 
 </html>
+
+<?php
+    include 'dp.php';
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+        $name= $_POST['fname'];
+        $birthday = $_POST['birthday'];
+        $gender = $_POST['gender'];
+        $email = $_POST['email'];
+        $number = $_POST['number'];
+        $password = $_POST['password'];
+        $cpassword = $_POST['cpassword'];
+        $location = $_POST['location'];
+        $sql = "SELECT * FROM `user_detail` WHERE `email` LIKE '$email';";
+        $result = mysqli_query($conn,$sql);
+        $rows = mysqli_num_rows($result);
+        if($password == $cpassword && $rows == 0){
+
+        // insert into database
+            $sql = "INSERT INTO `user_detail` ( `name`, `birthday`, `gender`, `email`, `number`, `password`, `created on`,`location`) VALUES ( '$name', '$birthday', '$gender', '$email', '$number', '$password', current_timestamp(),'$location');";
+            $result = mysqli_query($conn,$sql);
+            if($result){   
+                session_start();
+                $_SESSION['adminName'] = $name;
+                $_SESSION['email']= $email;
+                header("location: home.php");
+                
+            }
+        }
+        else if($password != $cpassword){
+            echo '<script>swal ( "Oops" ,  "Password must be same!" ,  "error" );</script>';
+        }
+        else{
+            echo '<script>swal ( "Oops" ,  "Account must be exists!" ,  "error" );</script>';
+        }
+    }
+?>

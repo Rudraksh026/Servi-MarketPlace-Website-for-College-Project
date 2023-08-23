@@ -178,6 +178,7 @@
                 
         
               <script src="javaScript/bootstrap/bootstrap.min.js"></script>
+              <script src="javaScript/sweetalert.mn.js"></script>
         ';
         if(($_SERVER['REQUEST_METHOD'] == 'POST') ){
             $name= $_POST['fname']." ".$_POST['lname'];
@@ -210,12 +211,12 @@
                     $sql = "INSERT INTO `service_details` (`name`, `email`, `gender`, `number`, `location`, `service`, `amount`,`image_url`) VALUES ('$name', '$email', '$gender', $number, '$location', '$service', $amount,'$new_img_name');";
                     $result = mysqli_query($conn,$sql);
                     if($result){
-                        echo '<script>alert("Entry Inserted Successfully...");</script>';
+                        echo '<script>swal("Entry Inserted Successfully!","", "success");</script>';
                     }
                 }
                 else{
                     ?>
-                    <script>alert("Invalid image type"); </script>
+                    <script>swal ( "Oops" ,  "Invalid Image Type!" ,  "error" );</script>
                     <?php
                 }
 
