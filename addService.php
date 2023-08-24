@@ -211,7 +211,11 @@
                     $sql = "INSERT INTO `service_details` (`name`, `email`, `gender`, `number`, `location`, `service`, `amount`,`image_url`) VALUES ('$name', '$email', '$gender', $number, '$location', '$service', $amount,'$new_img_name');";
                     $result = mysqli_query($conn,$sql);
                     if($result){
-                        echo '<script>swal("Entry Inserted Successfully!","", "success");</script>';
+                        echo '<script>swal("Service Inserted successfully!", "", "success")
+            .then((value) => {
+                window.location.href =
+                    "home.php";
+            });</script>';
                     }
                 }
                 else{
@@ -227,7 +231,11 @@
         
     }
     else
-      header("location: login.php");
+      {echo '<script>
+        window.location.href =
+            "login.php";
+    
+</script>';}
 
 ?>
 </body>

@@ -168,8 +168,11 @@
                 session_start();
                 $_SESSION['adminName'] = $name;
                 $_SESSION['email']= $email;
-                header("location: home.php");
-                
+                echo '<script>swal("Register successful!", "Login Now!", "success")
+            .then((value) => {
+                window.location.href =
+                    "login.php";
+            });</script>';
             }
         }
         else if($password != $cpassword){

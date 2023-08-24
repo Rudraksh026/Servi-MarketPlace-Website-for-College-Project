@@ -24,7 +24,7 @@ echo '<nav class="navbar bg-body-tertiary fixed-top" style="background-color: wh
           <a class="nav-link" href="addService.php">Add Your Service</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="deleteService.php">Delete Your Service</a>
+          <a class="nav-link" href="deleteService.php">Edit\Delete Your Service</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="logout.php">Log Out</a>

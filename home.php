@@ -339,8 +339,13 @@
       
         echo '</div>';
     }
-    else
-      header("location: login.php");
+    else{
+    echo '<script>
+    window.location.href =
+        "login.php";
+
+</script>';
+    }
 
 ?>
 <script>

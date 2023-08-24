@@ -115,7 +115,11 @@
             session_start();
             $_SESSION['email'] = $email;
             $_SESSION['adminName'] = $data['name'];
-            header("location: home.php");
+            echo '<script>swal("login successful!", "Welcome back '.$data["name"].'!", "success")
+            .then((value) => {
+                window.location.href =
+                    "home.php";
+            });</script>';
         }
         else{
             echo '<script>swal ( "Oops" ,  "Invalid Email and Password!" ,  "error" );</script>';

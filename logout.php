@@ -4,5 +4,9 @@
     session_destroy();
     unset($_SESSION['adminName']);
     unset($_SESSION['email']);
-    header("location: login.php");
+    echo '<script>
+    window.location.href =
+        "login.php";
+
+</script>';
 ?>
