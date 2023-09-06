@@ -6,6 +6,11 @@ if (isset($_SESSION['adminName'])) {
   $email = $_SESSION['email'];
   echo '<!DOCTYPE html>
         <html lang="en">
+        <head>';
+        echo '
+        <head>';
+        include 'icon.php';
+        echo'
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Document</title>

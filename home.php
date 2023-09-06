@@ -5,7 +5,9 @@
     include "dp.php";
     if(isset($_SESSION['adminName'])){
         echo '
-        <head>
+        <head>';
+        include 'icon.php';
+        echo'
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Home | ALSP</title>
@@ -30,11 +32,13 @@
         .container{
             background:transparent ;
             color: white;
-            width: 30%;
+            width: 20%;
+            height: 400px;
             margin: 25px 10px;
             display: flex;
             border: 2px solid white;
             border-radius: 15px;
+            flex-direction: column;
         }
         
         .left,.right{
@@ -44,6 +48,11 @@
         .left{
             width: 40%;
         }
+
+        .container .left,.container .right{
+          height: 50%;
+          width: 100%;
+      }
         
         h6{
             font-weight: 900;
@@ -53,14 +62,15 @@
             width: 60%;
         }
         
-        button {
+        .button {
             color: #171820;
             height: 30px;
-            padding: 5px 20px;
+            padding: 5px 10px;
             font-weight: bold;
             border-radius: 5px;
             border: none;
             outline: none;
+            margin: 3px 0px;
         }
 
         .nodata{
@@ -135,18 +145,40 @@
         margin: auto;
       }
 
+      .search{
+        width:30%;
+      }
+
+      .search_btn{
+        background-color: black;
+        color:white;
+      }
+
+      .search_btn:hover{
+        background-color: white;
+        color:black;
+      }
         
         @media (max-width:1000px) {
             .container,.nodata{
-                width: 100%;
+                width: 45%;
             }
             .left,.right{
               width: 100%;
+          }
+          .search{
+            width:50%;
           } 
         }
         
-        @media (max-width:400px) {
-            .container,.nodata{
+        @media (max-width:450px) {
+          .container{
+            width: 100%;
+          }
+          .search{
+            width:90%;
+          } 
+            .nodata{
                 flex-direction: column;
             }
             .left,.right{
@@ -164,24 +196,27 @@
             include "nav.php";
             echo '
               <div id="popup" class="popup">
-        <img src="img/icon.png" class="pop_head logo"><br>
-        <div class="details">
-          <img id="profile" src="" width= 150px height="150px">
-          <h5>Provider Name :- <span class="output"></span></h5>
-          <h5>Gender :- <span class="output"></span></h5>
-          <h5>Service Providing :- <span class="output"></span></h5>
-          <h5>Phone no :- <span class="output"></span></h5>
-          <h5>Email :- <span class="output"></span></h5>
-          <h5>Location :- <span class="output"></span></h5>
-          <h5>Amount to pay :- <span class="output"></span></h5>
-          <button class="button button2" onclick="hide()">Close</button>
-        </div>
-        </div>
+                <img src="img/icon.png" class="pop_head logo"><br>
+                <div class="details">
+                  <img id="profile" src="" width= 150px height="150px">
+                  <h5>Provider Name :- <span class="output"></span></h5>
+                  <h5>Gender :- <span class="output"></span></h5>
+                  <h5>Service Providing :- <span class="output"></span></h5>
+                  <h5>Phone no :- <span class="output"></span></h5>
+                  <h5>Email :- <span class="output"></span></h5>
+                  <h5>Location :- <span class="output"></span></h5>
+                  <h5>Amount to pay :- <span class="output"></span></h5>
+                  <button class="button button2" onclick="hide()">Close</button>
+                </div>
+              </div>
               <script src="javaScript/bootstrap/bootstrap.min.js"></script>
-              
-              
-          
       </div>
+      <form class="container-fluid search" action="home.php" method="post">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Username" name="search" aria-label="Username" aria-describedby="basic-addon1">
+            <button class="btn search_btn ">Search</button>
+          </div>
+        </form>
         ';
         if(isset($_POST['search']) && !isset($_POST['sort'])){
             $search = $_POST['search'];
@@ -224,6 +259,7 @@
                           <h6>'.$data['gender'].'</h6>
                           <h6>'.$data['amount'].'/-</h6>
                           <button class="button button1"  onclick="show(\''.$data['name'].'\',\''.$data['gender'].'\',\''.$data['service'].'\',\''.$data['number'].'\',\''.$data['email'].'\',\''.$data['location'].'\',\''.$data['amount'].'\',\''.$data['image_url'].'\')">See Details</button>
+                          <button class="button button1" onclick="contact(\''.$data['number'].'\')">Contact Him</button>
                       </div>
                     </div>
                   
@@ -283,6 +319,7 @@
                         <h6>'.$data['gender'].'</h6>
                         <h6>'.$data['amount'].'/-</h6>
                         <button class="button button1"  onclick="show(\''.$data['name'].'\',\''.$data['gender'].'\',\''.$data['service'].'\',\''.$data['number'].'\',\''.$data['email'].'\',\''.$data['location'].'\',\''.$data['amount'].'\',\''.$data['image_url'].'\')">See Details</button>
+                        <button class="button button1" onclick="contact(\''.$data['number'].'\')">Contact Him</button>
                     </div>
                   </div>
                 
@@ -322,7 +359,8 @@
                         <h6>'.$data['service'].'</h6>
                         <h6>'.$data['gender'].'</h6>
                         <h6>'.$data['amount'].'/-</h6>
-                        <button class="button button1"  onclick="show(\''.$data['name'].'\',\''.$data['gender'].'\',\''.$data['service'].'\',\''.$data['number'].'\',\''.$data['email'].'\',\''.$data['location'].'\',\''.$data['amount'].'\',\''.$data['image_url'].'\')">See Details</button>
+                        <button class="button button1" onclick="show(\''.$data['name'].'\',\''.$data['gender'].'\',\''.$data['service'].'\',\''.$data['number'].'\',\''.$data['email'].'\',\''.$data['location'].'\',\''.$data['amount'].'\',\''.$data['image_url'].'\')">See Details</button>
+                        <button class="button button1" onclick="contact(\''.$data['number'].'\')">Contact Him</button>
                     </div>
                   </div>
                 
@@ -349,6 +387,11 @@
 
 ?>
 <script>
+  function contact(number){
+    var link = "https://wa.me/91"+number;
+    window.open(link);
+  }
+
   function show(name,gender,service,number,email,location,amount,image) {
   change = "block";
   document.getElementById("popup").style.display = ("block");

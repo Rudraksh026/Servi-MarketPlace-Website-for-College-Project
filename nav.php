@@ -3,10 +3,7 @@
 echo '<nav class="navbar bg-body-tertiary fixed-top" style="background-color: white !important;">
 <div class="container-fluid">
   <a class="navbar-brand" href="Home.php"><img class="logo" src="img/icon.png" alt=""></a>
-  <form class="d-flex mt-3 search" role="search" action="home.php" method="post">
-                    <input class="form-control me-2" id="search" type="text" placeholder="Search" name="search" aria-label="Search">
-                    <button class="btn btn-outline-success">Search</button>
-                  </form>
+  
   <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
