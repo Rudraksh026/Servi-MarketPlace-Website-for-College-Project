@@ -162,6 +162,10 @@
         @media (max-width:1000px) {
             .container,.nodata{
                 width: 45%;
+                flex-direction: column;
+            }
+            .sorry{
+              margin-top:0px;
             }
             .left,.right{
               width: 100%;
