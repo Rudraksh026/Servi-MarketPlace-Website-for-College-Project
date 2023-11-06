@@ -16,12 +16,21 @@ echo '<!-- ======= Sidebar ======= -->
       <i class="bi bi-menu-button-wide"></i><span>Services</span><i class="bi bi-chevron-down ms-auto"></i>
     </a>
     <ul id="services-nav" class="nav-content collapse  " data-bs-parent="#sidebar-nav">
-      
-      <li>
-        <a href="list.php" class="">
-          <i class="bi bi-circle"></i><span>List of Services</span>
-        </a>
-      </li>
+    <li>
+    <a href="list.php">
+      <i class="bi bi-circle"></i><span>All List</span>
+    </a>
+  </li>
+    <li>
+    <a href="inList.php">
+      <i class="bi bi-circle"></i><span>Inactive List</span>
+    </a>
+  </li>
+  <li>
+    <a href="acList.php">
+      <i class="bi bi-circle"></i><span>Active List</span>
+    </a>
+  </li>
     </ul>
   </li><!-- End Components Nav -->
   

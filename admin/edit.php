@@ -141,10 +141,16 @@
                             <input type="number" id="amount" name="amount" value="'.$amount.'" required>
                         </div>
                         <div>
-                            <label>Gender<br></label>
-                            <input type="radio" name="gender" id="male" value="M" required><label for="male">Male</label>
-                            <input type="radio" name="gender" id="Female" value="F" required><label id="female" for="Female">Female</label>
-                        </div>
+                            <label>Gender<br></label>';
+                            if($gender == 'M'){
+                                echo'<input type="radio" name="gender" id="male" value="M" checked="checked" required><label for="male">Male</label>';
+                                echo'<input type="radio" name="gender" id="Female" value="F" required><label id="female" for="Female">Female</label>';
+                            }
+                            if($gender == 'F'){
+                                echo'<input type="radio" name="gender" id="male" value="M" required><label for="male">Male</label>';
+                                echo'<input type="radio" name="gender" id="Female" value="F" checked="checked" required><label id="female" for="Female">Female</label>';
+                            }
+                        echo'</div>
                         <div>
                             <label for="email">Email<br></label>
                             <input type="email" id="email" name="email" value="'.$email.'" required>
@@ -193,7 +199,7 @@
                                 }
                                 else{
                                     echo 'InActive';
-                                    $ac++;
+                                    $iac++;
                                 }
                             echo'</option>
                             <option value="';

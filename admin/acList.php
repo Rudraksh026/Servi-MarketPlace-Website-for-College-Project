@@ -147,7 +147,7 @@ echo '<head>
     </a>
     <ul id="services-nav" class="nav-content collapse show " data-bs-parent="#sidebar-nav">
     <li>
-    <a href="list.php" class="active">
+    <a href="list.php">
       <i class="bi bi-circle"></i><span>All List</span>
     </a>
   </li>
@@ -157,11 +157,10 @@ echo '<head>
         </a>
       </li>
       <li>
-        <a href="acList.php">
+        <a href="acList.php" class="active">
           <i class="bi bi-circle"></i><span>Active List</span>
         </a>
       </li>
-      
     </ul>
   
 </ul>
@@ -213,7 +212,7 @@ echo '<head>
           ';
                         
                             
-                            $sql = "SELECT * FROM `service_details`";
+                            $sql = "SELECT * FROM `service_details` WHERE `active` = 1 ;";
                             $result = mysqli_query($conn,$sql);
                             $i = 1;
                             while ($row = mysqli_fetch_array($result)) {
@@ -225,12 +224,7 @@ echo '<head>
                                 '.$row['service'].'
 								</td>
 								<td class="align-items-center text-center">';
-                                if($row['active'] == '0'){
-                                    echo '<span class="badge bg-danger px-3 rounded-pill">InActive</span>';
-                                }
-                                else{
                                     echo '<span class="badge bg-success px-3 rounded-pill">Active</span>';
-                                }
                                 
 								echo'									</td>
 								<td class="align-items-center" align="center">
