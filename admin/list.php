@@ -1,7 +1,11 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <?php
+include "../dp.php";
+session_start();
+if(isset($_SESSION["username"])){
+echo '<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
   	<title>Service Provider Management System</title>
@@ -40,9 +44,7 @@
     ======================================================== -->
 
 
-    <script>
-        var _base_url_ = 'http://localhost/php-spms/';
-    </script>
+    
     <script src="http://localhost/php-spms/dist/js/script.js"></script>
 
   </head>  <body>
@@ -103,7 +105,7 @@
           </li>
 
           <li>
-            <a class="dropdown-item d-flex align-items-center" href="http://localhost/php-spms/classes/Login.php?f=logout">
+            <a class="dropdown-item d-flex align-items-center" href="logout.php">
               <i class="bi bi-box-arrow-right"></i>
               <span>Sign Out</span>
             </a>
@@ -116,6 +118,10 @@
   </nav><!-- End Icons Navigation -->
 
 </header><!-- End Header -->     <style>
+  button{
+    width: 100%;
+    border: none;
+  }
   .sidebar-nav .nav-content a i {
     font-size: .9rem;
 }
@@ -129,7 +135,7 @@
 <ul class="sidebar-nav" id="sidebar-nav">
 
   <li class="nav-item">
-    <a class="nav-link collapsed" href="index.html">
+    <a class="nav-link collapsed" href="adminIndex.php">
       <i class="bi bi-grid"></i>
       <span>Dashboard</span>
     </a>
@@ -157,7 +163,7 @@
           <h1>Services</h1>
           <nav>
               <ol class="breadcrumb">
-                <li class="breadcrumb-item "><a href="http://localhost/php-spms//admin">Dashboard</a></li>
+                <li class="breadcrumb-item "><a href="adminIndex.php">Dashboard</a></li>
                                 <li class="breadcrumb-item active">Services</li>
                               </ol>
           </nav>
@@ -194,8 +200,9 @@
 						</tr>
 					</thead>
 					<tbody>
-                        <?php
-                            include "../dp.php";
+          ';
+                        
+                            
                             $sql = "SELECT * FROM `service_details`";
                             $result = mysqli_query($conn,$sql);
                             while ($row = mysqli_fetch_array($result)) {
@@ -216,15 +223,15 @@
 								echo'									</td>
 								<td class="align-items-center" align="center">
 									<form action="edit.php" method="post">
-                                        <input class="hidden" type="number" value="'.$row['sno'].'"">
+                                        <input class="hidden" type="number" name="edit" value="'.$row['sno'].'"">
                                         <button>Edit</button>
                                     </form>
 								</td>
 							</tr>';
                             }
-                        ?>
+                        
 													
-											</tbody>
+											echo '</tbody>
 				</table>
 			</div>
 		</div>
@@ -232,8 +239,8 @@
 </div>
 <script>
 	$(document).ready(function(){
-		$('.delete_data').click(function(){
-			_conf("Are you sure to delete this service permanently?","delete_service",[$(this).attr('data-id')])
+		$(".delete_data").click(function(){
+			_conf("Are you sure to delete this service permanently?","delete_service",[$(this).attr("data-id")])
 		})
 	})
 	function delete_service($id){
@@ -245,14 +252,14 @@
 			dataType:"json",
 			error:err=>{
 				console.log(err)
-				alert_toast("An error occured.",'error');
+				alert_toast("An error occured.","error");
 				end_loader();
 			},
 			success:function(resp){
-				if(typeof resp== 'object' && resp.status == 'success'){
+				if(typeof resp== "object" && resp.status == "success"){
 					location.reload();
 				}else{
-					alert_toast("An error occured.",'error');
+					alert_toast("An error occured.","error");
 					end_loader();
 				}
 			}
@@ -260,7 +267,7 @@
 	}
 </script>      </main>
   
-      <div class="modal fade" id="uni_modal" role='dialog'>
+      <div class="modal fade" id="uni_modal" role="dialog">
         <div class="modal-dialog modal-md modal-dialog-centered rounded-0" role="document">
           <div class="modal-content rounded-0">
             <div class="modal-header">
@@ -269,13 +276,13 @@
           <div class="modal-body">
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary bg-gradient-teal border-0 rounded-0" id='submit' onclick="$('#uni_modal form').submit()">Save</button>
+            <button type="button" class="btn btn-primary bg-gradient-teal border-0 rounded-0" id="submit" onclick="$("#uni_modal form").submit()">Save</button>
             <button type="button" class="btn btn-secondary rounded-0" data-dismiss="modal">Cancel</button>
           </div>
           </div>
         </div>
       </div>
-      <div class="modal fade" id="uni_modal_right" role='dialog'>
+      <div class="modal fade" id="uni_modal_right" role="dialog">
         <div class="modal-dialog modal-full-height  modal-md rounded-0" role="document">
           <div class="modal-content rounded-0">
             <div class="modal-header">
@@ -289,7 +296,7 @@
           </div>
         </div>
       </div>
-      <div class="modal fade" id="confirm_modal" role='dialog'>
+      <div class="modal fade" id="confirm_modal" role="dialog">
         <div class="modal-dialog modal-md modal-dialog-centered rounded-0" role="document">
           <div class="modal-content rounded-0">
             <div class="modal-header">
@@ -299,13 +306,13 @@
             <div id="delete_content"></div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary  bg-gradient-teal border-0 rounded-0" id='confirm' onclick="">Continue</button>
+            <button type="button" class="btn btn-primary  bg-gradient-teal border-0 rounded-0" id="confirm" onclick="">Continue</button>
             <button type="button" class="btn btn-secondary rounded-0" data-dismiss="modal">Close</button>
           </div>
           </div>
         </div>
       </div>
-    <div class="modal fade" id="viewer_modal" role='dialog'>
+    <div class="modal fade" id="viewer_modal" role="dialog">
       <div class="modal-dialog modal-md" role="document">
         <div class="modal-content">
                 <button type="button" class="btn-close" data-dismiss="modal"><span class="fa fa-times"></span></button>
@@ -315,27 +322,27 @@
     </div>
     <script>
   $(document).ready(function(){
-     window.viewer_modal = function($src = ''){
+     window.viewer_modal = function($src = ""){
       start_loader()
       var t = $src.split('.')
       t = t[1]
-      if(t =='mp4'){
-        var view = $("<video src='"+$src+"' controls autoplay></video>")
+      if(t =="mp4"){
+        var view = $("<video src="src" controls autoplay></video>")
       }else{
-        var view = $("<img src='"+$src+"' />")
+        var view = $("<img src="src" />")
       }
-      $('#viewer_modal .modal-content video,#viewer_modal .modal-content img').remove()
-      $('#viewer_modal .modal-content').append(view)
-      $('#viewer_modal').modal({
+      $("#viewer_modal .modal-content video,#viewer_modal .modal-content img").remove()
+      $("#viewer_modal .modal-content").append(view)
+      $("#viewer_modal").modal({
               show:true,
-              backdrop:'static',
+              backdrop:"static",
               keyboard:false,
               focus:true
             })
             end_loader()  
 
   }
-    window.uni_modal = function($title = '' , $url='',$size=""){
+    window.uni_modal = function($title = "" , $url="",$size=""){
         start_loader()
         $.ajax({
             url:$url,
@@ -345,16 +352,16 @@
             },
             success:function(resp){
                 if(resp){
-                    $('#uni_modal .modal-title').html($title)
-                    $('#uni_modal .modal-body').html(resp)
-                    if($size != ''){
-                        $('#uni_modal .modal-dialog').addClass($size+'  modal-dialog-centered')
+                    $("#uni_modal .modal-title").html($title)
+                    $("#uni_modal .modal-body").html(resp)
+                    if($size != ""){
+                        $("#uni_modal .modal-dialog").addClass($size+"  modal-dialog-centered")
                     }else{
-                        $('#uni_modal .modal-dialog').removeAttr("class").addClass("modal-dialog modal-md modal-dialog-centered")
+                        $("#uni_modal .modal-dialog").removeAttr("class").addClass("modal-dialog modal-md modal-dialog-centered")
                     }
-                    $('#uni_modal').modal({
+                    $("#uni_modal").modal({
                       show:true,
-                      backdrop:'static',
+                      backdrop:"static",
                       keyboard:false,
                       focus:true
                     })
@@ -363,10 +370,10 @@
             }
         })
     }
-    window._conf = function($msg='',$func='',$params = []){
-       $('#confirm_modal #confirm').attr('onclick',$func+"("+$params.join(',')+")")
-       $('#confirm_modal .modal-body').html($msg)
-       $('#confirm_modal').modal('show')
+    window._conf = function($msg="",$func="",$params = []){
+       $("#confirm_modal #confirm").attr("onclick",$func+"("+$params.join(",")+")")
+       $("#confirm_modal .modal-body").html($msg)
+       $("#confirm_modal").modal("show")
     }
   })
 </script>
@@ -385,5 +392,15 @@
 <script src="http://localhost/php-spms/assets/vendor/php-email-form/validate.js"></script>
 
 <!-- Template Main JS File -->
-<script src="http://localhost/php-spms/assets/js/main.js"></script>  </body>
+<script src="http://localhost/php-spms/assets/js/main.js"></script> '; 
+}
+else{
+  echo '<script>
+    window.location.href =
+        "login.php";
+
+</script>';
+}
+?>
+</body>
 </html>

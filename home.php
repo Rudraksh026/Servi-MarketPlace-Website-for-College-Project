@@ -227,7 +227,7 @@
             $sql = 'SELECT `location` FROM `user_detail` WHERE `email` = "'.$_SESSION['email'].'";';
           $result = mysqli_query($conn,$sql);
           $data = mysqli_fetch_assoc($result);
-            $sql = "SELECT * FROM `service_details` WHERE `service` = '$search' AND `location` = '".$data['location']."';";
+            $sql = "SELECT * FROM `service_details` WHERE `service` = '$search' AND `location` = '".$data['location']."' AND `active` = 1;";
 
             $result = mysqli_query($conn,$sql);
             $row = mysqli_num_rows($result);
@@ -287,7 +287,7 @@
           $sql = 'SELECT `location` FROM `user_detail` WHERE `email` = "'.$_SESSION['email'].'";';
           $result = mysqli_query($conn,$sql);
           $data = mysqli_fetch_assoc($result);
-            $sql = "SELECT * FROM `service_details` WHERE `service` = '$search' AND `location` = '".$data['location']."' ORDER BY `amount` $sort";
+            $sql = "SELECT * FROM `service_details` WHERE `service` = '$search' AND `location` = '".$data['location']."' AND `active` = 1 ORDER BY `amount` $sort";
 
             $result = mysqli_query($conn,$sql);
             $row = mysqli_num_rows($result);
@@ -343,7 +343,7 @@
           $sql = 'SELECT `location` FROM `user_detail` WHERE `email` = "'.$_SESSION['email'].'";';
           $result = mysqli_query($conn,$sql);
           $data = mysqli_fetch_assoc($result);
-            $sql = "SELECT * FROM `service_details` WHERE `location` = '".$data['location']."' LIMIT 20;";
+            $sql = "SELECT * FROM `service_details` WHERE `location` = '".$data['location']."' AND `active` = 1 LIMIT 20;";
             $result = mysqli_query($conn,$sql);
             $row = mysqli_num_rows($result);
             if($row>0){

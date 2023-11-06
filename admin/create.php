@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-    session_start();
     include "../dp.php";
-    if(isset($_SESSION['adminName'])){
-       
-        echo '
-        <head>';
+    session_start();
+    if(isset($_SESSION["username"])){
+
+        echo '<head>';
         include '../icon.php';
-        echo'
-        <head>
+        echo' 
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>ADD SERVICE | ALSP</title>
@@ -111,9 +109,32 @@
             </style>
         </head>
         <body>
-            ';
-            include "../nav.php";
-            echo '
+            
+        <nav class="navbar bg-body-tertiary fixed-top" style="background-color: white !important;">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="adminIndex.php"><img class="logo" src="../img/icon.png" alt=""></a>
+          
+          <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title" id="offcanvasNavbarLabel" style="color:black;">Welcome on Servi-Connect</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+              <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="adminIndex.php">Home</a>
+                </li>
+                
+                
+              </ul>
+              
+            </div>
+          </div>
+        </div>
+        </nav>
               <div class="container">
                 <h1>Add Service</h1>
                 <form action="create.php" method="post" enctype="multipart/form-data">
@@ -240,14 +261,17 @@
                 
             }
         }
-        
     }
-    else
-      {echo '<script>
-        window.location.href =
-            "login.php";
+    else{
+        echo '<script>
+          window.location.href =
+              "login.php";
+      
+      </script>';
+      }
+        
     
-</script>';}
+    
 
 ?>
 </body>

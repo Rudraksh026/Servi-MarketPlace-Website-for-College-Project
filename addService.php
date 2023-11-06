@@ -212,7 +212,7 @@
                     move_uploaded_file($tmp_name, $img_upload_path);
     
                     // Insert into Database
-                    $sql = "INSERT INTO `service_details` (`name`, `email`, `gender`, `number`, `location`, `service`, `amount`,`image_url`) VALUES ('$name', '$email', '$gender', $number, '$location', '$service', $amount,'$new_img_name');";
+                    $sql = "INSERT INTO `service_details` (`name`, `email`, `gender`, `number`, `location`, `service`, `amount`,`image_url`,`active`) VALUES ('$name', '$email', '$gender', $number, '$location', '$service', $amount,'$new_img_name',0);";
                     $result = mysqli_query($conn,$sql);
                     if($result){
                         echo '<script>swal("Service Inserted successfully!", "", "success")
