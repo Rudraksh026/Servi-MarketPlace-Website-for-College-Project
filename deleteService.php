@@ -21,10 +21,9 @@ if (isset($_SESSION['adminName'])) {
         *{
             font-family: "Varela Round", sans-serif;
             box-sizing: border-box;
-            color: white;
+            color: black;
         }
         body{
-            background: url(img/login_signup_background.gif);
             padding-top: 10em;
         }
         .logo{
@@ -32,13 +31,14 @@ if (isset($_SESSION['adminName'])) {
         }
         
         .container {
-          border: 2px solid rgba(255, 255, 255, 0.523);
+          border: 2px solid #039efc;
           width: 100%;
           margin: 80px auto;
           border-radius: 20px;
           display: flex;
           flex-wrap: wrap;
           flex-direction: row;
+          box-shadow: 5px 5px 10px black;
         }
         
         .container h1 {
@@ -76,10 +76,10 @@ if (isset($_SESSION['adminName'])) {
           display: flex;
           width: 45%;
           background:transparent ;
-          color: white;
+          color: black;
           margin: 40px auto;
           display: flex;
-          border: 2px solid white;
+          border: 2px solid #039efc;
           border-radius: 15px;
       }
 
@@ -100,7 +100,7 @@ if (isset($_SESSION['adminName'])) {
 }
 
 a{
-  color:white;
+  color:black;
   text-decoration:none;
 }
 
@@ -169,7 +169,7 @@ a:hover{
         echo '
       
             <div class="container">
-              <h1>Delete Service</h1>
+              <h1>Delete / Edit Service</h1>
               <table>
                   <tr>
                       <th>Service</th>
@@ -223,7 +223,7 @@ a:hover{
       echo '
         
               <div class="container">
-                <h1>Delete Service</h1>
+                <h1>Delete / Edit Service</h1>
                 <table>
                     <tr>
                         <th>Service</th>

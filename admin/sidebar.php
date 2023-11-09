@@ -5,7 +5,7 @@ echo '<!-- ======= Sidebar ======= -->
 <ul class="sidebar-nav" id="sidebar-nav">
 
   <li class="nav-item">
-    <a class="nav-link " href="http://localhost/php-spms/admin">
+    <a class="nav-link " href="adminIndex.php">
       <i class="bi bi-grid"></i>
       <span>Dashboard</span>
     </a> 

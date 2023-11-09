@@ -19,19 +19,18 @@
         *{
             font-family: "Varela Round", sans-serif;
             box-sizing: border-box;
-            color: white;
+            color: black;
             margin: 0;
             padding: 0;
         }
         body{
-            background: url(img/login_signup_background.gif);
             padding-top: 10em;
         }
         .logo{
             width: 90px;
         }
         .container {
-            border: 2px solid rgba(255, 255, 255, 0.523);
+            border: 2px solid #039efc;
             width: 40%;
             margin: 80px auto;
             padding: 40px;
@@ -39,6 +38,7 @@
             display: flex;
             flex-wrap: wrap;
             flex-direction: row;
+            box-shadow: 5px 5px 10px black;
         }
 
         .container h1 {
@@ -60,26 +60,26 @@
         input[type="email"],
         input[type="date"],
         select,
-        input[type="number"] {
+        input[type="number"],input[type="file"] {
             width: 100%;
             border: none;
-            border-bottom: 2px solid white;
-            background-color: #393c51;
+            border-bottom: 2px solid #039efc;
+            background-color: white;
         }
 
         input ,select{
             margin: 5px 0px;
             outline: none;
             padding: 5px;
-            color:white;
+            color:black;
         }
 
         input[type="radio"] {
             margin: 0 5px;
         }
 
-        button {
-            color: #171820;
+        .button {
+            color: black;
             height: 30px;
             padding: 5px 20px;
             font-weight: bold;
@@ -87,6 +87,8 @@
             border: none;
             outline: none;
             cursor: pointer;
+            background-color: #039efc;
+            width: 100%;
         }
 
         .search{
@@ -169,13 +171,21 @@
                     </div>
                     <div>
                         <label for="location">Location<br></label>
-                        <input type="text" id="location" name="location"  required>
+                        <select name="location" id="location" required>
+                        ';
+                        $sql = "SELECT DISTINCT location FROM service_details;";
+                        $result = mysqli_query($conn,$sql);
+                        while($data = mysqli_fetch_assoc($result)){
+                            echo '<option value='.$data['location'].'>'.$data['location'].'</option>';
+                        }
+                        echo'
+                        </select>
                     </div>
                     <div>
                         <input id="photo" type="file" name="image" required>
                     </div>
                     <br>
-                    <button>Add Service</button>
+                    <button class="button">Add Service</button>
                 </form>
             </div>
              

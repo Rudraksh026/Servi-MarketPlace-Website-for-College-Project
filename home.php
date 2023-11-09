@@ -19,7 +19,6 @@
             box-sizing: border-box;
         }
         body{
-            background: url(img/login_signup_background.gif);
             padding-top: 15em;
         }
         
@@ -31,14 +30,15 @@
         
         .container{
             background:transparent ;
-            color: white;
+            color: black;
             width: 20%;
             height: 400px;
             margin: 25px 10px;
             display: flex;
-            border: 2px solid white;
+            border: 2px solid #039efc;
             border-radius: 15px;
             flex-direction: column;
+            box-shadow: 5px 5px 10px black;
         }
         
         .left,.right{
@@ -63,7 +63,8 @@
         }
         
         .button {
-            color: #171820;
+            color: white;
+            background-color: black;
             height: 30px;
             padding: 5px 10px;
             font-weight: bold;
@@ -71,16 +72,21 @@
             border: none;
             outline: none;
             margin: 3px 0px;
+            box-shadow: 5px 5px 10px black;
+        }
+        .button:hover{
+          color:black;
+          background-color: #039efc;
         }
 
         .nodata{
           display: flex;
           width: 45%;
           background:transparent ;
-          color: white;
+          color: black;
           margin: 40px auto;
           display: flex;
-          border: 2px solid white;
+          border: 2px solid #039efc;
           border-radius: 15px;
       }
       
@@ -141,8 +147,12 @@
       }
       .sort{
         width: 45%;
-        color: white;
+        color: black;
         margin: auto;
+      }
+
+      .left img{
+        border-radius: 50%;
       }
 
       .search{
@@ -155,7 +165,7 @@
       }
 
       .search_btn:hover{
-        background-color: white;
+        background-color: #039efc;
         color:black;
       }
         
@@ -217,7 +227,27 @@
       </div>
       <form class="container-fluid search" action="home.php" method="post">
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="Username" name="search" aria-label="Username" aria-describedby="basic-addon1">
+          <select name="search" class="form-control" id="service" required>
+                            <option value="none" selected disabled hidden>Select an Option</option>
+                            <option value="Designer">Designer</option>
+                            <option value="Developer">Developer</option>
+                            <option value="Electrician">Electrician</option>
+                            <option value="Plumber">Plumber</option>
+                            <option value="Constructor">Constructor</option>
+                            <option value="Insurance">Insurance</option>
+                            <option value="Travel_agency">Travel agency</option>
+                            <option value="Financial_services">Financial services</option>
+                            <option value="Medical">Medical</option>
+                            <option value="Legal_work">Legal Work</option>
+                            <option value="Tutor">Tutor</option>
+                            <option value="Sport_Academy">Sport Academy</option>
+                            <option value="music_Academy">Music Academy</option>
+                            <option value="dance_Academy">Dance Academy</option>
+                            <option value="Freelancer">Freelancer</option>
+                            <option value="Carpentar">Carpentar</option>
+                            <option value="Delivery">Delivery</option>
+                            <option value="Editor">Editor</option>
+                        </select>
             <button class="btn search_btn ">Search</button>
           </div>
         </form>
@@ -343,7 +373,7 @@
           $sql = 'SELECT `location` FROM `user_detail` WHERE `email` = "'.$_SESSION['email'].'";';
           $result = mysqli_query($conn,$sql);
           $data = mysqli_fetch_assoc($result);
-            $sql = "SELECT * FROM `service_details` WHERE `location` = '".$data['location']."' AND `active` = 1 LIMIT 20;";
+            $sql = "SELECT * FROM `service_details` WHERE `location` = '".$data['location']."' AND `active` = 1;";
             $result = mysqli_query($conn,$sql);
             $row = mysqli_num_rows($result);
             if($row>0){

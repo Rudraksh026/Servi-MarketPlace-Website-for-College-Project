@@ -74,8 +74,7 @@ echo '<head>
         <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
           <img src="http://localhost/php-spms/uploads/avatars/1.png?v=1678760026" alt="Profile" class="rounded-circle">
           <span class="d-none d-md-block dropdown-toggle ps-2">admin</span>
-        </a><!-- End Profile Iamge Icon -->
-
+        </a>
         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
           <li class="dropdown-header">
             <h6>Adminstrator Admin</h6>
@@ -84,40 +83,27 @@ echo '<head>
           <li>
             <hr class="dropdown-divider">
           </li>
-
-          <!-- <li>
-            <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-              <i class="bi bi-person"></i>
-              <span>My Profile</span>
-            </a>
-          </li> -->
           <li>
             <hr class="dropdown-divider">
           </li>
-
-          
           <li>
             <hr class="dropdown-divider">
           </li>
-         
           <li>
             <hr class="dropdown-divider">
           </li>
-
           <li>
             <a class="dropdown-item d-flex align-items-center" href="logout.php">
               <i class="bi bi-box-arrow-right"></i>
               <span>Sign Out</span>
             </a>
           </li>
-
-        </ul><!-- End Profile Dropdown Items -->
-      </li><!-- End Profile Nav -->
-
+        </ul>
+      </li>
     </ul>
-  </nav><!-- End Icons Navigation -->
-
-</header><!-- End Header -->     <style>
+  </nav>
+</header>
+    <style>
   button{
     width: 100%;
     border: none;
@@ -129,18 +115,14 @@ echo '<head>
     display: none;
 }
 </style>
-<!-- ======= Sidebar ======= -->
 <aside id="sidebar" class="sidebar">
-
 <ul class="sidebar-nav" id="sidebar-nav">
-
   <li class="nav-item">
     <a class="nav-link collapsed" href="adminIndex.php">
       <i class="bi bi-grid"></i>
       <span>Dashboard</span>
     </a>
-  </li><!-- End Dashboard Nav -->
-
+  </li>
   <li class="nav-item">
     <a class="nav-link " data-bs-target="#services-nav" data-bs-toggle="collapse" href="#" data-bs-collapse="true">
       <i class="bi bi-menu-button-wide"></i><span>Services</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -161,13 +143,9 @@ echo '<head>
           <i class="bi bi-circle"></i><span>Active List</span>
         </a>
       </li>
-      
     </ul>
-  
 </ul>
-
-</aside><!-- End Sidebar-->   
-      <!-- Content Wrapper. Contains page content -->
+</aside>
       <main id="main" class="main">
         <div class="pagetitle">
           <h1>Services</h1>
@@ -179,7 +157,6 @@ echo '<head>
           </nav>
         </div>
         <div id="msg-container">
-           
         </div>
         <div class="card card-outline rounded-0 card-navy">
 	<div class="card-header ">
@@ -210,9 +187,7 @@ echo '<head>
 						</tr>
 					</thead>
 					<tbody>
-          ';
-                        
-                            
+          ';         
                             $sql = "SELECT * FROM `service_details`";
                             $result = mysqli_query($conn,$sql);
                             $i = 1;
@@ -230,8 +205,7 @@ echo '<head>
                                 }
                                 else{
                                     echo '<span class="badge bg-success px-3 rounded-pill">Active</span>';
-                                }
-                                
+                                }             
 								echo'									</td>
 								<td class="align-items-center" align="center">
 									<form action="edit.php" method="post">
@@ -240,9 +214,7 @@ echo '<head>
                                     </form>
 								</td>
 							</tr>';
-                            }
-                        
-													
+                            }		
 											echo '</tbody>
 				</table>
 			</div>
@@ -278,7 +250,6 @@ echo '<head>
 		})
 	}
 </script>      </main>
-  
       <div class="modal fade" id="uni_modal" role="dialog">
         <div class="modal-dialog modal-md modal-dialog-centered rounded-0" role="document">
           <div class="modal-content rounded-0">
@@ -389,11 +360,7 @@ echo '<head>
     }
   })
 </script>
-
-
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-   
-<!-- Vendor JS Files -->
 <script src="http://localhost/php-spms/assets/vendor/apexcharts/apexcharts.min.js"></script>
 <script src="http://localhost/php-spms/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="http://localhost/php-spms/assets/vendor/chart.js/chart.umd.js"></script>
@@ -402,8 +369,6 @@ echo '<head>
 <script src="http://localhost/php-spms/assets/vendor/simple-datatables/simple-datatables.js"></script>
 <script src="http://localhost/php-spms/assets/vendor/tinymce/tinymce.min.js"></script>
 <script src="http://localhost/php-spms/assets/vendor/php-email-form/validate.js"></script>
-
-<!-- Template Main JS File -->
 <script src="http://localhost/php-spms/assets/js/main.js"></script> '; 
 }
 else{

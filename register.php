@@ -4,6 +4,7 @@
 <head>
     <?php    
 include 'icon.php';
+include 'dp.php';
      ?> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,19 +15,12 @@ include 'icon.php';
         * {
             font-family: 'Varela Round', sans-serif;
             box-sizing: border-box;
-            color: white;
+            color: black;
             margin: 0;
             padding: 0;
         }
-
-        body {
-            background: url(img/login_signup_background.gif);
-            background-size: 200% 200%;
-            background-size: cover;
-        }
-
         .container {
-            border: 2px solid rgba(255, 255, 255, 0.523);
+            border: 2px solid #039efc;
             width: 40%;
             margin: 80px auto;
             padding: 40px;
@@ -34,6 +28,7 @@ include 'icon.php';
             display: flex;
             flex-wrap: wrap;
             flex-direction: row;
+            box-shadow: 5px 5px 10px black;
         }
 
         .container h1 {
@@ -55,18 +50,17 @@ include 'icon.php';
         input[type="email"],
         input[type="date"],
         input[type="password"],
-        input[type="number"] {
+        input[type="number"],select {
             width: 100%;
             border: none;
-            border-bottom: 2px solid white;
-            background-color: #393c51;
+            border-bottom: 2px solid #039efc;
         }
 
-        input {
+        input,select {
             margin: 5px 0px;
             outline: none;
             padding: 5px;
-            color:white;
+            color:black;
         }
 
         input[type="radio"] {
@@ -74,7 +68,8 @@ include 'icon.php';
         }
 
         button {
-            color: #171820;
+            color: black;
+            background-color: #039efc;
             height: 30px;
             padding: 5px 20px;
             font-weight: bold;
@@ -112,8 +107,18 @@ include 'icon.php';
                 <input type="text" id="fname" name="fname" required>
             </div>
             <div>
-                <label for="location">Location<br></label>
-                <input type="text" id="location" name="location">
+                <?php
+                    echo'<label for="location">Location<br></label>
+                    <select name="location" id="location" required>
+                    ';
+                    $sql = "SELECT DISTINCT location FROM service_details;";
+                    $result = mysqli_query($conn,$sql);
+                    while($data = mysqli_fetch_assoc($result)){
+                        echo '<option value='.$data['location'].'>'.$data['location'].'</option>';
+                    }
+                    echo'
+                    </select>';
+                ?>
             </div>
             <div>
                 <label for="birthday">Birthday<br></label>

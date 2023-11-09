@@ -13,15 +13,9 @@ include 'icon.php';
         * {
             font-family: 'Varela Round', sans-serif;
             box-sizing: border-box;
-            color: white;
+            color: black;
             margin: 0;
             padding: 0;
-        }
-
-        body {
-            background: url(img/login_signup_background.gif);
-            background-size: 200% 200%;
-            background-size: cover;
         }
 
         img {
@@ -31,19 +25,20 @@ include 'icon.php';
         }
 
         .container {
-            border: 2px solid rgba(255, 255, 255, 0.523);
+            border: 2px solid #039efc;
             width: 40%;
             margin: 80px auto;
             padding: 40px;
             text-align: center;
             border-radius: 20px;
+            box-shadow: 5px 5px 10px black;
         }
 
         input[type="email"],
         input[type="password"] {
             background-color: transparent;
             border: none;
-            border-bottom: 1px solid white;
+            border-bottom: 1px solid black;
             width: 100%;
             padding-bottom: 7px;
             margin-top: 30px;
@@ -52,12 +47,12 @@ include 'icon.php';
         }
 
         ::placeholder {
-            color: white;
+            color: black;
             font-size: 17px;
         }
 
         button {
-            background-color: white;
+            background-color: #039efc;
             border: none;
             width: 100%;
             padding: 7px;
@@ -89,7 +84,7 @@ include 'icon.php';
 <body>
     <div class="background"></div>
     <div class="container">
-        <img src="img/login_signup_image.gif" alt="">
+        <img src="img/login.gif" alt="">
         <div>
             <h1>Login</h1>
             <form action="login.php" method="post">

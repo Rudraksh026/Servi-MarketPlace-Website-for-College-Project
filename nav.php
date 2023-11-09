@@ -1,6 +1,6 @@
 <?php
 
-echo '<nav class="navbar bg-body-tertiary fixed-top" style="background-color: white !important;">
+echo '<nav class="navbar bg-body-tertiary fixed-top" >
 <div class="container-fluid">
   <a class="navbar-brand" href="Home.php"><img class="logo" src="img/icon.png" alt=""></a>
   

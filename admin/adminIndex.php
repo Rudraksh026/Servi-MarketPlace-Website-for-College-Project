@@ -10,16 +10,10 @@ echo '<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
   	<title>Service Provider Management System</title>
-    
-    <!-- Favicons -->
     <link href="http://localhost/php-spms/assets/img/favicon.png" rel="icon">
     <link href="http://localhost/php-spms/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-    <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
-    <!-- Vendor CSS Files -->
     <link href="http://localhost/php-spms/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="http://localhost/php-spms/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
     <link href="http://localhost/php-spms/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
@@ -27,26 +21,11 @@ echo '<head>
     <link href="http://localhost/php-spms/assets/vendor/quill/quill.bubble.css" rel="stylesheet">
     <link href="http://localhost/php-spms/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
     <link href="http://localhost/php-spms/assets/vendor/simple-datatables/style.css" rel="stylesheet">
-
-    <!-- Template Main CSS File -->
     <link href="http://localhost/php-spms/assets/css/style.css" rel="stylesheet">
     <link href="http://localhost/php-spms/assets/css/custom.css" rel="stylesheet">
-
-    <!-- jQUery -->
     <script src="http://localhost/php-spms/assets/js/jquery-3.6.4.min.js"></script>
     <script src="http://localhost/php-spms/assets/js/script.js"></script>
-
-    <!-- =======================================================
-    * Template Name: NiceAdmin
-    * Updated: Mar 09 2023 with Bootstrap v5.2.3
-    * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-    * Author: BootstrapMade.com
-    * License: https://bootstrapmade.com/license/
-    ======================================================== -->
-
-
-    <script src="http://localhost/php-spms/dist/js/script.js"></script>
-    
+    <script src="http://localhost/php-spms/dist/js/script.js"></script> 
     <style>
     .sidebar-nav .nav-content a i {
       font-size: .9rem;
@@ -55,9 +34,7 @@ echo '<head>
   </head>  <body>';
                include "nav.php"; 
 include "sidebar.php";
-  
 echo '
-      <!-- Content Wrapper. Contains page content -->
       <main id="main" class="main">
         <div class="pagetitle">
           <h1>Home</h1>
@@ -72,16 +49,12 @@ echo '
         </div>
         <section class="section dashboard">
     <div class="row">
-
-      <!-- Left side columns -->
       <div class="col-lg-12 col-md-12 col-sm-12 col-12">
         <div class="row">
-
           <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
             <div class="card info-card">
               <div class="card-body">
                 <h5 class="card-title">Services <span>| Active</span></h5>
-
                 <div class="d-flex align-items-center justify-content-between">
                   <div class="card-icon rounded-circle d-flex align-items-center justify-content-center bg-success bg-opacity-25 text-success">
                     <i class="bi bi-menu-button-wide"></i>
@@ -93,48 +66,34 @@ echo '
                         $row = mysqli_num_rows($result);
                         echo '<div class="ps-3">
                                             <h6>'.strval($row).'</h6>
-
                         </div>
-                    
                 </div>
               </div>
-
             </div>
           </div>
           <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
             <div class="card info-card">
               <div class="card-body">
                 <h5 class="card-title">Services <span>| Inative</span></h5>
-
                 <div class="d-flex align-items-center justify-content-between">
                   <div class="card-icon rounded-circle d-flex align-items-center justify-content-center bg-dark bg-opacity-25 text-dark">
                     <i class="bi bi-menu-button-wide"></i>
                   </div>';
-                  
                         $sql = "SELECT * FROM `service_details` WHERE `active` = 0";
                         $result = mysqli_query($conn, $sql);
                         $row = mysqli_num_rows($result);
                         echo '<div class="ps-3">
                                             <h6>'.strval($row).'</h6>
-
                         </div>
-                    
                 </div>
               </div>
-
             </div>
           </div>
-
-     
-
-          
-
         </div>
-      </div><!-- End Left side columns -->
-
+      </div>
     </div>
-  </section>      </main>
-  
+  </section>
+        </main>
       <div class="modal fade" id="uni_modal" role="dialog">
         <div class="modal-dialog modal-md modal-dialog-centered rounded-0" role="document">
           <div class="modal-content rounded-0">
@@ -208,7 +167,6 @@ echo '
               focus:true
             })
             end_loader()  
-
   }
     window.uni_modal = function($title = '."''".' , $url='."''".',$size=""){
         start_loader()
@@ -245,10 +203,7 @@ echo '
     }
   })
 </script>
-
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-   
-<!-- Vendor JS Files -->
 <script src="http://localhost/php-spms/assets/vendor/apexcharts/apexcharts.min.js"></script>
 <script src="http://localhost/php-spms/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="http://localhost/php-spms/assets/vendor/chart.js/chart.umd.js"></script>
@@ -257,8 +212,6 @@ echo '
 <script src="http://localhost/php-spms/assets/vendor/simple-datatables/simple-datatables.js"></script>
 <script src="http://localhost/php-spms/assets/vendor/tinymce/tinymce.min.js"></script>
 <script src="http://localhost/php-spms/assets/vendor/php-email-form/validate.js"></script>
-
-<!-- Template Main JS File -->
 <script src="http://localhost/php-spms/assets/js/main.js"></script>  </body>
 </html>';
 }

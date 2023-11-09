@@ -15,6 +15,5 @@ include "../dp.php";
                 if($result){
                     header("location: list.php");
                 }
-            }
-            
+            }  
             ?>

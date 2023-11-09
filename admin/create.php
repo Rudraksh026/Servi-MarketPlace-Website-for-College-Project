@@ -4,7 +4,6 @@
     include "../dp.php";
     session_start();
     if(isset($_SESSION["username"])){
-
         echo '<head>';
         include '../icon.php';
         echo' 
@@ -17,19 +16,18 @@
         *{
             font-family: "Varela Round", sans-serif;
             box-sizing: border-box;
-            color: white;
+            color: black;
             margin: 0;
             padding: 0;
         }
         body{
-            background: url(../img/login_signup_background.gif);
             padding-top: 10em;
         }
         .logo{
             width: 90px;
         }
         .container {
-            border: 2px solid rgba(255, 255, 255, 0.523);
+            border: 2px solid #039efc;
             width: 40%;
             margin: 80px auto;
             padding: 40px;
@@ -37,23 +35,20 @@
             display: flex;
             flex-wrap: wrap;
             flex-direction: row;
+            box-shadow: 5px 5px 10px black;
         }
-
         .container h1 {
             width: 100%;
             margin: auto;
         }
-
         form {
             width: 100%;
         }
-
         .container form div {
             display: inline-block;
             width: 45%;
             margin: 25px 10px;
         }
-
         input[type="text"],
         input[type="email"],
         input[type="date"],
@@ -61,23 +56,20 @@
         input[type="number"] {
             width: 100%;
             border: none;
-            border-bottom: 2px solid white;
-            background-color: #393c51;
+            border-bottom: 2px solid #039efc;
+            background-color: white;
         }
-
         input ,select{
             margin: 5px 0px;
             outline: none;
             padding: 5px;
-            color:white;
+            color:black;
         }
-
         input[type="radio"] {
             margin: 0 5px;
         }
-
-        button {
-            color: #171820;
+        .button {
+            color: black;
             height: 30px;
             padding: 5px 20px;
             font-weight: bold;
@@ -85,12 +77,12 @@
             border: none;
             outline: none;
             cursor: pointer;
+            background-color: #039efc;
+            width:100%;
         }
-
         .search{
             display:none !important;
         }
-
         @media (max-width:1300px) {
             .container form div {
             display: inline-block;
@@ -98,22 +90,18 @@
             margin: 25px 10px;
         }
         }
-
         @media (max-width:500px) {
             .container{
                 border:none;
                 width: 100%;
             }
         }
-        
             </style>
         </head>
         <body>
-            
         <nav class="navbar bg-body-tertiary fixed-top" style="background-color: white !important;">
         <div class="container-fluid">
           <a class="navbar-brand" href="adminIndex.php"><img class="logo" src="../img/icon.png" alt=""></a>
-          
           <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -127,10 +115,7 @@
                 <li class="nav-item">
                   <a class="nav-link active" aria-current="page" href="adminIndex.php">Home</a>
                 </li>
-                
-                
               </ul>
-              
             </div>
           </div>
         </div>
@@ -138,7 +123,6 @@
               <div class="container">
                 <h1>Add Service</h1>
                 <form action="create.php" method="post" enctype="multipart/form-data">
-        
                     <div>
                         <label for="fname">First Name<br></label>
                         <input type="text" id="fname" name="fname" required>
@@ -190,7 +174,15 @@
                     </div>
                     <div>
                         <label for="location">Location<br></label>
-                        <input type="text" id="location" name="location"  required>
+                        <select name="location" id="location" required>
+                        ';
+                        $sql = "SELECT DISTINCT location FROM service_details;";
+                        $result = mysqli_query($conn,$sql);
+                        while($data = mysqli_fetch_assoc($result)){
+                            echo '<option value='.$data['location'].'>'.$data['location'].'</option>';
+                        }
+                        echo'
+                        </select>
                     </div>
                     <div>
                         <label for="status">Status</label>
@@ -203,12 +195,9 @@
                         <input id="photo" type="file" name="image" required>
                     </div>
                     <br>
-                    <button>Add Service</button>
+                    <button class="button">Add Service</button>
                 </form>
             </div>
-             
-                
-        
               <script src="../javaScript/bootstrap/bootstrap.min.js"></script>
               <script src="../javaScript/sweetalert.mn.js"></script>
         ';
@@ -221,26 +210,18 @@
             $service = $_POST['service'];
             $location = $_POST['location'];
             $status = $_POST['status'];
-
-            
-
             $img_name = $_FILES["image"]['name'];
 	        $img_size = $_FILES["image"]['size'];
 	        $tmp_name = $_FILES["image"]['tmp_name'];
 	        $error = $_FILES["image"]['error'];
-
-
             if($error === 0 ){
                 $img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
 		        $img_ex_lc = strtolower($img_ex);
                 $allowed_exs = array("jpg", "jpeg","png"); 
-
                 if (in_array($img_ex_lc, $allowed_exs)) {
                     $new_img_name = uniqid("IMG-", true).'.'.$img_ex_lc;
                     $img_upload_path = '../uploads/'.$new_img_name;
                     move_uploaded_file($tmp_name, $img_upload_path);
-    
-                    // Insert into Database
                     $sql = "INSERT INTO `service_details` (`name`, `email`, `gender`, `number`, `location`, `service`, `amount`,`image_url`,`active`) VALUES ('$name', '$email', '$gender', $number, '$location', '$service', $amount,'$new_img_name','$status');";
                     $result = mysqli_query($conn,$sql);
                     if($result){
@@ -256,9 +237,6 @@
                     <script>swal ( "Oops" ,  "Invalid Image Type!" ,  "error" );</script>
                     <?php
                 }
-
-
-                
             }
         }
     }
@@ -269,10 +247,6 @@
       
       </script>';
       }
-        
-    
-    
-
 ?>
 </body>
 </html>

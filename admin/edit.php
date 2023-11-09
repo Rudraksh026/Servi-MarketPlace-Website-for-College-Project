@@ -17,19 +17,18 @@
         *{
             font-family: "Varela Round", sans-serif;
             box-sizing: border-box;
-            color: white;
+            color: black;
             margin: 0;
             padding: 0;
         }
         body{
-            background: url(../img/login_signup_background.gif);
             padding-top: 10em;
         }
         .logo{
             width: 90px;
         }
         .container {
-            border: 2px solid rgba(255, 255, 255, 0.523);
+            border: 2px solid #039efc;
             width: 40%;
             margin: 80px auto;
             padding: 40px;
@@ -38,22 +37,18 @@
             flex-wrap: wrap;
             flex-direction: row;
         }
-
         .container h1 {
             width: 100%;
             margin: auto;
         }
-
         form {
             width: 100%;
         }
-
         .container form div {
             display: inline-block;
             width: 45%;
             margin: 25px 10px;
         }
-
         input[type="text"],
         input[type="email"],
         input[type="date"],
@@ -61,23 +56,20 @@
         input[type="number"] {
             width: 100%;
             border: none;
-            border-bottom: 2px solid white;
-            background-color: #393c51;
+            border-bottom: 2px solid #039efc;
+            background-color: white;
         }
-
         input ,select{
             margin: 5px 0px;
             outline: none;
             padding: 5px;
-            color:white;
+            color:black;
         }
-
         input[type="radio"] {
             margin: 0 5px;
         }
-
         button {
-            color: #171820;
+            color: black;
             height: 30px;
             padding: 5px 20px;
             font-weight: bold;
@@ -85,15 +77,15 @@
             border: none;
             outline: none;
             cursor: pointer;
+            background-color:#039efc;
+            width: 100%;
         }
-
         .empty{
             display: none;
         }
         .search{
             display:none !important;
         }
-
         @media (max-width:1300px) {
             .container form div {
             display: inline-block;
@@ -101,14 +93,12 @@
             margin: 25px 10px;
         }
         }
-
         @media (max-width:500px) {
             .container{
                 border:none;
                 width: 100%;
             }
         }
-        
             </style>
         </head>
         <body>
@@ -182,7 +172,20 @@
                         </div>
                         <div>
                             <label for="location">Location<br></label>
-                            <input type="text" id="location" name="location" value="'.$location.'" required>
+                            
+                            <select name="location" id="location" required>
+                        ';
+                        $sql = "SELECT DISTINCT location FROM service_details;";
+                        $result = mysqli_query($conn,$sql);
+                        while($data = mysqli_fetch_assoc($result)){
+                            if($data["location"] == $location){
+                                echo '<option value='.$data['location'].' selected>'.$data['location'].'</option>';
+                            }else{
+                            echo '<option value='.$data['location'].'>'.$data['location'].'</option>';
+                            }
+                        }
+                        echo'
+                        </select>
                         </div>
                         <div class="empty">
                             <input class = "empty" type="text" name="sno" value="'.$sno.'" required>
@@ -219,36 +222,25 @@
                             echo'</option>
                         </select>
                     </div>
-                        <button>Edit Service</button>
+                        <button class="button">Edit Service</button>
                     </form>
                 </div>
-                    
-            
                   <script src="javaScript/bootstrap/bootstrap.min.js"></script>';
                 }
             }
             else{
                 echo '<script>
                     window.location.href =
-                        "home.php";
-                
+                        "home.php";   
             </script>';
-            }
-              
+            }       
     }
     else{
         echo '<script>
           window.location.href =
               "login.php";
-      
       </script>';
       }
-
-            
-    
-
-
-
 ?>
 </body>
 </html>
