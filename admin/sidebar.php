@@ -1,5 +1,5 @@
 <?php
-echo '<!-- ======= Sidebar ======= -->
+echo '
 <aside id="sidebar" class="sidebar">
 
 <ul class="sidebar-nav" id="sidebar-nav">
@@ -9,7 +9,7 @@ echo '<!-- ======= Sidebar ======= -->
       <i class="bi bi-grid"></i>
       <span>Dashboard</span>
     </a> 
-  </li><!-- End Dashboard Nav -->
+  </li>
 
   <li class="nav-item">
     <a class="nav-link collapsed" data-bs-target="#services-nav" data-bs-toggle="collapse" href="#" data-bs-collapse="false">
@@ -32,11 +32,11 @@ echo '<!-- ======= Sidebar ======= -->
     </a>
   </li>
     </ul>
-  </li><!-- End Components Nav -->
+  </li>
   
   
   
 </ul>
 
-</aside><!-- End Sidebar--> ';
+</aside>';
 ?>

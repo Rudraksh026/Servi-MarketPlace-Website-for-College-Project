@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-    include "../dp.php";
-    session_start();
-    if(isset($_SESSION["username"])){
-        echo '<head>';
-        include '../icon.php';
-        echo' 
+include "../dp.php";
+session_start();
+if (isset($_SESSION["username"])) {
+    echo '<head>';
+    include '../icon.php';
+    echo ' 
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>ADD SERVICE | ALSP</title>
@@ -176,12 +176,12 @@
                         <label for="location">Location<br></label>
                         <select name="location" id="location" required>
                         ';
-                        $sql = "SELECT DISTINCT location FROM service_details;";
-                        $result = mysqli_query($conn,$sql);
-                        while($data = mysqli_fetch_assoc($result)){
-                            echo '<option value='.$data['location'].'>'.$data['location'].'</option>';
-                        }
-                        echo'
+    $sql = "SELECT DISTINCT location FROM service_details;";
+    $result = mysqli_query($conn, $sql);
+    while ($data = mysqli_fetch_assoc($result)) {
+        echo '<option value=' . $data['location'] . '>' . $data['location'] . '</option>';
+    }
+    echo '
                         </select>
                     </div>
                     <div>
@@ -201,52 +201,51 @@
               <script src="../javaScript/bootstrap/bootstrap.min.js"></script>
               <script src="../javaScript/sweetalert.mn.js"></script>
         ';
-        if(($_SERVER['REQUEST_METHOD'] == 'POST') ){
-            $name= $_POST['fname']." ".$_POST['lname'];
-            $amount = $_POST['amount'];
-            $gender = $_POST['gender'];
-            $email = $_POST['email'];
-            $number = $_POST['number'];
-            $service = $_POST['service'];
-            $location = $_POST['location'];
-            $status = $_POST['status'];
-            $img_name = $_FILES["image"]['name'];
-	        $img_size = $_FILES["image"]['size'];
-	        $tmp_name = $_FILES["image"]['tmp_name'];
-	        $error = $_FILES["image"]['error'];
-            if($error === 0 ){
-                $img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
-		        $img_ex_lc = strtolower($img_ex);
-                $allowed_exs = array("jpg", "jpeg","png"); 
-                if (in_array($img_ex_lc, $allowed_exs)) {
-                    $new_img_name = uniqid("IMG-", true).'.'.$img_ex_lc;
-                    $img_upload_path = '../uploads/'.$new_img_name;
-                    move_uploaded_file($tmp_name, $img_upload_path);
-                    $sql = "INSERT INTO `service_details` (`name`, `email`, `gender`, `number`, `location`, `service`, `amount`,`image_url`,`active`) VALUES ('$name', '$email', '$gender', $number, '$location', '$service', $amount,'$new_img_name','$status');";
-                    $result = mysqli_query($conn,$sql);
-                    if($result){
-                        echo '<script>swal("Service Inserted successfully!", "", "success")
+    if (($_SERVER['REQUEST_METHOD'] == 'POST')) {
+        $name = $_POST['fname'] . " " . $_POST['lname'];
+        $amount = $_POST['amount'];
+        $gender = $_POST['gender'];
+        $email = $_POST['email'];
+        $number = $_POST['number'];
+        $service = $_POST['service'];
+        $location = $_POST['location'];
+        $status = $_POST['status'];
+        $img_name = $_FILES["image"]['name'];
+        $img_size = $_FILES["image"]['size'];
+        $tmp_name = $_FILES["image"]['tmp_name'];
+        $error = $_FILES["image"]['error'];
+        if ($error === 0) {
+            $img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
+            $img_ex_lc = strtolower($img_ex);
+            $allowed_exs = array("jpg", "jpeg", "png");
+            if (in_array($img_ex_lc, $allowed_exs)) {
+                $new_img_name = uniqid("IMG-", true) . '.' . $img_ex_lc;
+                $img_upload_path = '../uploads/' . $new_img_name;
+                move_uploaded_file($tmp_name, $img_upload_path);
+                $sql = "INSERT INTO `service_details` (`name`, `email`, `gender`, `number`, `location`, `service`, `amount`,`image_url`,`active`) VALUES ('$name', '$email', '$gender', $number, '$location', '$service', $amount,'$new_img_name','$status');";
+                $result = mysqli_query($conn, $sql);
+                if ($result) {
+                    echo '<script>swal("Service Inserted successfully!", "", "success")
             .then((value) => {
                 window.location.href =
                     "list.php";
             });</script>';
-                    }
                 }
-                else{
-                    ?>
-                    <script>swal ( "Oops" ,  "Invalid Image Type!" ,  "error" );</script>
-                    <?php
-                }
+            } else {
+                ?>
+                <script>swal("Oops", "Invalid Image Type!", "error");</script>
+                <?php
             }
         }
     }
-    else{
-        echo '<script>
+} else {
+    echo '<script>
           window.location.href =
               "login.php";
       
       </script>';
-      }
+}
 ?>
 </body>
+
 </html>

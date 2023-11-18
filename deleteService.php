@@ -7,10 +7,10 @@ if (isset($_SESSION['adminName'])) {
   echo '<!DOCTYPE html>
         <html lang="en">
         <head>';
-        echo '
+  echo '
         <head>';
-        include 'icon.php';
-        echo'
+  include 'icon.php';
+  echo '
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Document</title>
@@ -29,7 +29,6 @@ if (isset($_SESSION['adminName'])) {
         .logo{
             width: 90px;
         }
-        
         .container {
           border: 2px solid #039efc;
           width: 100%;
@@ -40,7 +39,6 @@ if (isset($_SESSION['adminName'])) {
           flex-direction: row;
           box-shadow: 5px 5px 10px black;
         }
-        
         .container h1 {
           width: 100%;
           margin: auto;
@@ -50,28 +48,23 @@ if (isset($_SESSION['adminName'])) {
         tr{
           width: 100%;
         }
-        
         th,td{
           width: 250px !important;
           padding: 2% 10% ;
           
         }
-
         table{
             display:block;
             width:100%;
         }
-        
         button{
             background: transparent;
             border: none;
             outline: none;
         }
-
         input{
           display:none;
         }
-
         .nodata{
           display: flex;
           width: 45%;
@@ -82,38 +75,28 @@ if (isset($_SESSION['adminName'])) {
           border: 2px solid #039efc;
           border-radius: 15px;
       }
-
       .sorry{
         margin-top: 70px;
-    }
-
-    .right{
-      width: 70%;
-  }
-
-  .left{
-    width: 30%;
-}
-
+      }
+      .right{
+        width: 70%;
+      }
+      .left{
+          width: 30%;
+      }
 .left,.right{
   padding: 10px 15px;
 }
-
 a{
   color:black;
   text-decoration:none;
 }
-
 a:hover{
   color:red;
 }
-
 .search{
   display:none !important;
-}
-
-
-        
+}       
         @media (max-width:1300px) {
           th,td{
             width: 200px !important;
@@ -123,8 +106,7 @@ a:hover{
           .nodata{
             width: 100%;
         }
-        }
-        
+        }       
         @media (max-width:500px) {
           .container{
               border:none;
@@ -137,7 +119,6 @@ a:hover{
           width: 100%;
       }
         }
-        
             </style>
             <script>
             function value(n){
@@ -149,16 +130,13 @@ a:hover{
         </head>
         <body>
             ';
-              include "nav.php";
-  
-
-
-  if ($_SERVER["REQUEST_METHOD"] == "POST")  {
+  include "nav.php";
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $del = $_POST["sno"];
     $img = $_POST["image"];
     $sql2 = "DELETE FROM `service_details` WHERE `sno` = ('$del');";
-    $del_location = "uploads/".$img;
-    unlink($del_location);    
+    $del_location = "uploads/" . $img;
+    unlink($del_location);
     $result2 = mysqli_query($conn, $sql2);
     if ($result2) {
       echo '<script>swal("Entry Deleted Successfully!","", "success");</script>';
@@ -167,7 +145,6 @@ a:hover{
       $row = mysqli_num_rows($result);
       if ($row > 0) {
         echo '
-      
             <div class="container">
               <h1>Delete / Edit Service</h1>
               <table>
@@ -205,23 +182,19 @@ a:hover{
                     ';
           $i += 1;
         }
-
-      }
-      else {
+      } else {
         echo '<div class="nodata">
                   <img class="left" src="img/nodata.gif" alt="" width="50%">
                   <h3 class = "right sorry">Sorry, No Service Added By You.</h3>
                 </div>';
       }
     }
-  } 
-  else {
+  } else {
     $sql = "SELECT * FROM `service_details` WHERE `email` = '$email';";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_num_rows($result);
     if ($row > 0) {
       echo '
-        
               <div class="container">
                 <h1>Delete / Edit Service</h1>
                 <table>
@@ -255,35 +228,27 @@ a:hover{
                                 <button><i class="material-icons">delete</i></button>
                               </form>
                             </td>
-                          </tr>
-                      ';
+                          </tr>';
         $i += 1;
       }
-
-    } 
-    else {
+    } else {
       echo '<div class="nodata">
                 <img class="left" src="img/nodata.gif" alt="" width="50%">
                 <h3 class = "right sorry">Sorry, No Service Added By You.</h3>
               </div>';
     }
   }
-}
-else{
+} else {
   echo '<script>
                     window.location.href =
                         "login.php";
                 
             </script>';
 }
-
-
 ?>
 </table>
 </div>
 <script src="javaScript/bootstrap/bootstrap.min.js"></script>
-
-
 </body>
 
 </html>

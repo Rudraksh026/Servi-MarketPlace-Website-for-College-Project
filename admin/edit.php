@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-    include "../dp.php";
-    session_start();
-    if(isset($_SESSION["username"])) {
-        echo '
+include "../dp.php";
+session_start();
+if (isset($_SESSION["username"])) {
+    echo '
         <head>';
-        include '../icon.php';
-        echo'
+    include '../icon.php';
+    echo '
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>EDIT SERVICE | ALSP</title>
@@ -103,56 +103,56 @@
         </head>
         <body>
         ';
-              if($_SERVER['REQUEST_METHOD']=='POST' && isset($_POST['edit'])){
-                $sno = $_POST['edit'];
-                $sql = "SELECT * FROM `service_details` WHERE `sno` = ('$sno');";
-                $result = mysqli_query($conn, $sql);
-                $row = mysqli_num_rows($result);
-                if($row>0){
-                    while($data = mysqli_fetch_assoc($result)){
-                        $name = $data['name'];
-                        $email = $data['email'];
-                        $gender = $data['gender'];
-                        $number = $data['number'];
-                        $service = $data['service'];
-                        $location = $data['location'];
-                        $amount = $data['amount'];
-                        $status = $data['active'];
-                    }
-                    echo '<div class="container">
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['edit'])) {
+        $sno = $_POST['edit'];
+        $sql = "SELECT * FROM `service_details` WHERE `sno` = ('$sno');";
+        $result = mysqli_query($conn, $sql);
+        $row = mysqli_num_rows($result);
+        if ($row > 0) {
+            while ($data = mysqli_fetch_assoc($result)) {
+                $name = $data['name'];
+                $email = $data['email'];
+                $gender = $data['gender'];
+                $number = $data['number'];
+                $service = $data['service'];
+                $location = $data['location'];
+                $amount = $data['amount'];
+                $status = $data['active'];
+            }
+            echo '<div class="container">
                     <h1>Edit Service</h1>
                     <form action="editDone.php" method="post">
                         <div>
                             <label for="fname">Name<br></label>
-                            <input type="text" id="fname" name="fname" value="'.$name.'" required>
+                            <input type="text" id="fname" name="fname" value="' . $name . '" required>
                         </div>
                         <div>
                             <label for="amount">Amount<br></label>
-                            <input type="number" id="amount" name="amount" value="'.$amount.'" required>
+                            <input type="number" id="amount" name="amount" value="' . $amount . '" required>
                         </div>
                         <div>
                             <label>Gender<br></label>';
-                            if($gender == 'M'){
-                                echo'<input type="radio" name="gender" id="male" value="M" checked="checked" required><label for="male">Male</label>';
-                                echo'<input type="radio" name="gender" id="Female" value="F" required><label id="female" for="Female">Female</label>';
-                            }
-                            if($gender == 'F'){
-                                echo'<input type="radio" name="gender" id="male" value="M" required><label for="male">Male</label>';
-                                echo'<input type="radio" name="gender" id="Female" value="F" checked="checked" required><label id="female" for="Female">Female</label>';
-                            }
-                        echo'</div>
+            if ($gender == 'M') {
+                echo '<input type="radio" name="gender" id="male" value="M" checked="checked" required><label for="male">Male</label>';
+                echo '<input type="radio" name="gender" id="Female" value="F" required><label id="female" for="Female">Female</label>';
+            }
+            if ($gender == 'F') {
+                echo '<input type="radio" name="gender" id="male" value="M" required><label for="male">Male</label>';
+                echo '<input type="radio" name="gender" id="Female" value="F" checked="checked" required><label id="female" for="Female">Female</label>';
+            }
+            echo '</div>
                         <div>
                             <label for="email">Email<br></label>
-                            <input type="email" id="email" name="email" value="'.$email.'" required>
+                            <input type="email" id="email" name="email" value="' . $email . '" required>
                         </div>
                         <div>
                             <label for="phoneNo">Phone Number<br></label>
-                            <input type="number" id="phoneNo" name="number" value="'.$number.'" required>
+                            <input type="number" id="phoneNo" name="number" value="' . $number . '" required>
                         </div>
                         <div>
                             <label for="service">Service<br></label>
                             <select name="service" id="service" required>
-                                <option value="'.$service.'" selected>'.$service.'</option>
+                                <option value="' . $service . '" selected>' . $service . '</option>
                                 <option value="Designer">Designer</option>
                                 <option value="Developer">Developer</option>
                                 <option value="Electrician">Electrician</option>
@@ -175,72 +175,70 @@
                             
                             <select name="location" id="location" required>
                         ';
-                        $sql = "SELECT DISTINCT location FROM service_details;";
-                        $result = mysqli_query($conn,$sql);
-                        while($data = mysqli_fetch_assoc($result)){
-                            if($data["location"] == $location){
-                                echo '<option value='.$data['location'].' selected>'.$data['location'].'</option>';
-                            }else{
-                            echo '<option value='.$data['location'].'>'.$data['location'].'</option>';
-                            }
-                        }
-                        echo'
+            $sql = "SELECT DISTINCT location FROM service_details;";
+            $result = mysqli_query($conn, $sql);
+            while ($data = mysqli_fetch_assoc($result)) {
+                if ($data["location"] == $location) {
+                    echo '<option value=' . $data['location'] . ' selected>' . $data['location'] . '</option>';
+                } else {
+                    echo '<option value=' . $data['location'] . '>' . $data['location'] . '</option>';
+                }
+            }
+            echo '
                         </select>
                         </div>
                         <div class="empty">
-                            <input class = "empty" type="text" name="sno" value="'.$sno.'" required>
+                            <input class = "empty" type="text" name="sno" value="' . $sno . '" required>
                         </div>
                         <div>
                         <label for="status">Status</label>
                         <select id="status" name="status" required>
-                            <option value="'.$status.'" selected>';
-                                $ac = 0;
-                                $iac = 0;
-                                if($status == 1){
-                                    echo 'Active';
-                                    $ac++;
-                                }
-                                else{
-                                    echo 'InActive';
-                                    $iac++;
-                                }
-                            echo'</option>
+                            <option value="' . $status . '" selected>';
+            $ac = 0;
+            $iac = 0;
+            if ($status == 1) {
+                echo 'Active';
+                $ac++;
+            } else {
+                echo 'InActive';
+                $iac++;
+            }
+            echo '</option>
                             <option value="';
-                            if($ac == 1){
-                                echo '0';
-                            }
-                            if($iac == 1){
-                                echo '1';
-                            }
-                            echo'">';
-                                if($ac == 1){
-                                    echo 'InActive';
-                                }
-                                if($iac == 1){
-                                    echo 'Active';
-                                }
-                            echo'</option>
+            if ($ac == 1) {
+                echo '0';
+            }
+            if ($iac == 1) {
+                echo '1';
+            }
+            echo '">';
+            if ($ac == 1) {
+                echo 'InActive';
+            }
+            if ($iac == 1) {
+                echo 'Active';
+            }
+            echo '</option>
                         </select>
                     </div>
                         <button class="button">Edit Service</button>
                     </form>
                 </div>
                   <script src="javaScript/bootstrap/bootstrap.min.js"></script>';
-                }
-            }
-            else{
-                echo '<script>
+        }
+    } else {
+        echo '<script>
                     window.location.href =
                         "home.php";   
             </script>';
-            }       
     }
-    else{
-        echo '<script>
+} else {
+    echo '<script>
           window.location.href =
               "login.php";
       </script>';
-      }
+}
 ?>
 </body>
+
 </html>

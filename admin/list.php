@@ -1,24 +1,20 @@
-
 <!DOCTYPE html>
 <html lang="en">
-  <?php
+<?php
 include "../dp.php";
 session_start();
-if(isset($_SESSION["username"])){
-echo '<head>
+if (isset($_SESSION["username"])) {
+  echo '<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
   	<title>Service Provider Management System</title>
     
-    <!-- Favicons -->
     <link href="http://localhost/php-spms/assets/img/favicon.png" rel="icon">
     <link href="http://localhost/php-spms/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-    <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
-    <!-- Vendor CSS Files -->
     <link href="http://localhost/php-spms/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="http://localhost/php-spms/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
     <link href="http://localhost/php-spms/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
@@ -27,29 +23,15 @@ echo '<head>
     <link href="http://localhost/php-spms/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
     <link href="http://localhost/php-spms/assets/vendor/simple-datatables/style.css" rel="stylesheet">
 
-    <!-- Template Main CSS File -->
     <link href="http://localhost/php-spms/assets/css/style.css" rel="stylesheet">
     <link href="http://localhost/php-spms/assets/css/custom.css" rel="stylesheet">
 
-    <!-- jQUery -->
     <script src="http://localhost/php-spms/assets/js/jquery-3.6.4.min.js"></script>
     <script src="http://localhost/php-spms/assets/js/script.js"></script>
-
-    <!-- =======================================================
-    * Template Name: NiceAdmin
-    * Updated: Mar 09 2023 with Bootstrap v5.2.3
-    * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-    * Author: BootstrapMade.com
-    * License: https://bootstrapmade.com/license/
-    ======================================================== -->
-
-
-    
     <script src="http://localhost/php-spms/dist/js/script.js"></script>
 
   </head>  <body>
                
-     <!-- ======= Header ======= -->
 <header id="header" class="header fixed-top d-flex align-items-center">
 
   <div class="d-flex align-items-center justify-content-between">
@@ -57,15 +39,7 @@ echo '<head>
       <img src="../img/icon.png" alt="System Logo">
     </a>
     <i class="bi bi-list toggle-sidebar-btn"></i>
-  </div><!-- End Logo -->
-
-  <!-- <div class="search-bar">
-    <form class="search-form d-flex align-items-center" method="POST" action="#">
-      <input type="text" name="query" placeholder="Search" title="Enter search keyword">
-      <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-    </form>
-  </div> -->
-  <!-- End Search Bar -->
+  </div>
 
   <nav class="header-nav ms-auto">
     <ul class="d-flex align-items-center">
@@ -187,35 +161,39 @@ echo '<head>
 						</tr>
 					</thead>
 					<tbody>
-          ';         
-                            $sql = "SELECT * FROM `service_details`";
-                            $result = mysqli_query($conn,$sql);
-                            $i = 1;
-                            while ($row = mysqli_fetch_array($result)) {
-                                echo '<tr>
-								<td class="align-items-center text-center">'.$i++.'</td>
-								<td class="align-items-center">'.$row['email'].'</td>
-								<td class="align-items-center">'.$row['name'].'</td>
+          ';
+  $sql = "SELECT * FROM `service_details`";
+  $result = mysqli_query($conn, $sql);
+  $i = 1;
+  while ($row = mysqli_fetch_array($result)) {
+    echo '<tr>
+								<td class="align-items-center text-center">
+                <form action = "view.php" method="post">
+                <input name="sno" type="text" value="' . $row['sno'] . '" style="display:none">
+                <button class="button button1">View</button>
+                </form>
+                </td>
+								<td class="align-items-center">' . $row['email'] . '</td>
+								<td class="align-items-center">' . $row['name'] . '</td>
 								<td class="align-items-center">
-                                '.$row['service'].'
+                                ' . $row['service'] . '
 								</td>
 								<td class="align-items-center text-center">';
-                                if($row['active'] == '0'){
-                                    echo '<span class="badge bg-danger px-3 rounded-pill">InActive</span>';
-                                }
-                                else{
-                                    echo '<span class="badge bg-success px-3 rounded-pill">Active</span>';
-                                }             
-								echo'									</td>
+    if ($row['active'] == '0') {
+      echo '<span class="badge bg-danger px-3 rounded-pill">InActive</span>';
+    } else {
+      echo '<span class="badge bg-success px-3 rounded-pill">Active</span>';
+    }
+    echo '									</td>
 								<td class="align-items-center" align="center">
 									<form action="edit.php" method="post">
-                                        <input class="hidden" type="number" name="edit" value="'.$row['sno'].'"">
+                                        <input class="hidden" type="number" name="edit" value="' . $row['sno'] . '"">
                                         <button>Edit</button>
                                     </form>
 								</td>
 							</tr>';
-                            }		
-											echo '</tbody>
+  }
+  echo '</tbody>
 				</table>
 			</div>
 		</div>
@@ -307,7 +285,7 @@ echo '<head>
   $(document).ready(function(){
      window.viewer_modal = function($src = ""){
       start_loader()
-      var t = $src.split('.')
+      var t = $src.split(' . ')
       t = t[1]
       if(t =="mp4"){
         var view = $("<video src="src" controls autoplay></video>")
@@ -369,9 +347,8 @@ echo '<head>
 <script src="http://localhost/php-spms/assets/vendor/simple-datatables/simple-datatables.js"></script>
 <script src="http://localhost/php-spms/assets/vendor/tinymce/tinymce.min.js"></script>
 <script src="http://localhost/php-spms/assets/vendor/php-email-form/validate.js"></script>
-<script src="http://localhost/php-spms/assets/js/main.js"></script> '; 
-}
-else{
+<script src="http://localhost/php-spms/assets/js/main.js"></script> ';
+} else {
   echo '<script>
     window.location.href =
         "login.php";
@@ -380,4 +357,5 @@ else{
 }
 ?>
 </body>
+
 </html>

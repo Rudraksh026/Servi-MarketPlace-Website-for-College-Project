@@ -9,7 +9,7 @@ echo '<nav class="navbar bg-body-tertiary fixed-top" >
   </button>
   <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
     <div class="offcanvas-header">
-      <h5 class="offcanvas-title" id="offcanvasNavbarLabel" style="color:black;">Welcome, '.$_SESSION["adminName"].' on Servi-Connect</h5>
+      <h5 class="offcanvas-title" id="offcanvasNavbarLabel" style="color:black;">Welcome, ' . $_SESSION["adminName"] . ' on Servi-Connect</h5>
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">

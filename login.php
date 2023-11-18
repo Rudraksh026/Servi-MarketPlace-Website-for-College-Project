@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<?php    
-include 'icon.php';
-     ?> 
+    <?php
+    include 'icon.php';
+    ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
@@ -101,27 +102,26 @@ include 'icon.php';
 </html>
 
 <?php
-    include 'dp.php';
-    if($_SERVER["REQUEST_METHOD"] == "POST"){
-        $email = $_POST['email'];
-        $password = $_POST['password'];
-        $sql = "SELECT * FROM `user_detail` WHERE `email` = '$email' and `password` = '$password';";
-        $result = mysqli_query($conn,$sql);
-        $row = mysqli_num_rows($result);
-        if($row>0){
-            $data = mysqli_fetch_assoc($result);
-            session_start();
-            $_SESSION['email'] = $email;
-            $_SESSION['adminName'] = $data['name'];
-            echo '<script>swal("login successful!", "Welcome back '.$data["name"].'!", "success")
+include 'dp.php';
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $sql = "SELECT * FROM `user_detail` WHERE `email` = '$email' and `password` = '$password';";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_num_rows($result);
+    if ($row > 0) {
+        $data = mysqli_fetch_assoc($result);
+        session_start();
+        $_SESSION['email'] = $email;
+        $_SESSION['adminName'] = $data['name'];
+        echo '<script>swal("login successful!", "Welcome back ' . $data["name"] . '!", "success")
             .then((value) => {
                 window.location.href =
                     "home.php";
             });</script>';
-        }
-        else{
-            echo '<script>swal ( "Oops" ,  "Invalid Email and Password!" ,  "error" );</script>';
-        }
+    } else {
+        echo '<script>swal ( "Oops" ,  "Invalid Email and Password!" ,  "error" );</script>';
     }
-      
+}
+
 ?>

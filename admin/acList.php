@@ -1,11 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="en">
-  <?php
+<?php
 include "../dp.php";
 session_start();
-if(isset($_SESSION["username"])){
-echo '<head>
+if (isset($_SESSION["username"])) {
+  echo '<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
   	<title>Service Provider Management System</title>
@@ -153,30 +152,35 @@ echo '<head>
 						</tr>
 					</thead>
 					<tbody>
-          ';             
-                            $sql = "SELECT * FROM `service_details` WHERE `active` = 1 ;";
-                            $result = mysqli_query($conn,$sql);
-                            $i = 1;
-                            while ($row = mysqli_fetch_array($result)) {
-                                echo '<tr>
-								<td class="align-items-center text-center">'.$i++.'</td>
-								<td class="align-items-center">'.$row['email'].'</td>
-								<td class="align-items-center">'.$row['name'].'</td>
+          ';
+  $sql = "SELECT * FROM `service_details` WHERE `active` = 1 ;";
+  $result = mysqli_query($conn, $sql);
+  $i = 1;
+  while ($row = mysqli_fetch_array($result)) {
+    echo '<tr>
+								<td class="align-items-center text-center">
+                <form action = "view.php" method="post">
+                <input name="sno" type="text" value="' . $row['sno'] . '" style="display:none">
+                <button class="button button1">View</button>
+                </form>
+                </td>
+								<td class="align-items-center">' . $row['email'] . '</td>
+								<td class="align-items-center">' . $row['name'] . '</td>
 								<td class="align-items-center">
-                                '.$row['service'].'
+                                ' . $row['service'] . '
 								</td>
 								<td class="align-items-center text-center">';
-                                    echo '<span class="badge bg-success px-3 rounded-pill">Active</span>';
-								echo'									</td>
+    echo '<span class="badge bg-success px-3 rounded-pill">Active</span>';
+    echo '									</td>
 								<td class="align-items-center" align="center">
 									<form action="edit.php" method="post">
-                                        <input class="hidden" type="number" name="edit" value="'.$row['sno'].'"">
+                                        <input class="hidden" type="number" name="edit" value="' . $row['sno'] . '"">
                                         <button>Edit</button>
                                     </form>
 								</td>
 							</tr>';
-                            }
-											echo '</tbody>
+  }
+  echo '</tbody>
 				</table>
 			</div>
 		</div>
@@ -268,7 +272,7 @@ echo '<head>
   $(document).ready(function(){
      window.viewer_modal = function($src = ""){
       start_loader()
-      var t = $src.split('.')
+      var t = $src.split(' . ')
       t = t[1]
       if(t =="mp4"){
         var view = $("<video src="src" controls autoplay></video>")
@@ -329,9 +333,8 @@ echo '<head>
 <script src="http://localhost/php-spms/assets/vendor/simple-datatables/simple-datatables.js"></script>
 <script src="http://localhost/php-spms/assets/vendor/tinymce/tinymce.min.js"></script>
 <script src="http://localhost/php-spms/assets/vendor/php-email-form/validate.js"></script>
-<script src="http://localhost/php-spms/assets/js/main.js"></script> '; 
-}
-else{
+<script src="http://localhost/php-spms/assets/js/main.js"></script> ';
+} else {
   echo '<script>
     window.location.href =
         "login.php";
@@ -340,4 +343,5 @@ else{
 }
 ?>
 </body>
+
 </html>

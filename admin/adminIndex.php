@@ -1,12 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="en">
-  <?php
+<?php
 session_start();
 include "../dp.php";
-if(isset($_SESSION["username"]))
-{
-echo '<head>
+if (isset($_SESSION["username"])) {
+  echo '<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
   	<title>Service Provider Management System</title>
@@ -32,9 +30,9 @@ echo '<head>
   }
   </style>
   </head>  <body>';
-               include "nav.php"; 
-include "sidebar.php";
-echo '
+  include "nav.php";
+  include "sidebar.php";
+  echo '
       <main id="main" class="main">
         <div class="pagetitle">
           <h1>Home</h1>
@@ -60,12 +58,12 @@ echo '
                     <i class="bi bi-menu-button-wide"></i>
                   </div>
                   ';
-                        include "../dp.php";
-                        $sql = "SELECT * FROM `service_details` WHERE `active` = 1";
-                        $result = mysqli_query($conn, $sql);
-                        $row = mysqli_num_rows($result);
-                        echo '<div class="ps-3">
-                                            <h6>'.strval($row).'</h6>
+  include "../dp.php";
+  $sql = "SELECT * FROM `service_details` WHERE `active` = 1";
+  $result = mysqli_query($conn, $sql);
+  $row = mysqli_num_rows($result);
+  echo '<div class="ps-3">
+                                            <h6>' . strval($row) . '</h6>
                         </div>
                 </div>
               </div>
@@ -79,11 +77,11 @@ echo '
                   <div class="card-icon rounded-circle d-flex align-items-center justify-content-center bg-dark bg-opacity-25 text-dark">
                     <i class="bi bi-menu-button-wide"></i>
                   </div>';
-                        $sql = "SELECT * FROM `service_details` WHERE `active` = 0";
-                        $result = mysqli_query($conn, $sql);
-                        $row = mysqli_num_rows($result);
-                        echo '<div class="ps-3">
-                                            <h6>'.strval($row).'</h6>
+  $sql = "SELECT * FROM `service_details` WHERE `active` = 0";
+  $result = mysqli_query($conn, $sql);
+  $row = mysqli_num_rows($result);
+  echo '<div class="ps-3">
+                                            <h6>' . strval($row) . '</h6>
                         </div>
                 </div>
               </div>
@@ -151,12 +149,12 @@ echo '
   $(document).ready(function(){
      window.viewer_modal = function($src = ""){
       start_loader()
-      var t = $src.split('.')
+      var t = $src.split(' . ')
       t = t[1]
       if(t =="mp4"){
-        var view = $("<video src='."'"."+src+"."'".' controls autoplay></video>")
+        var view = $("<video src=' . "'" . "+src+" . "'" . ' controls autoplay></video>")
       }else{
-        var view = $("<img src='."'"."+src+"."'".' />")
+        var view = $("<img src=' . "'" . "+src+" . "'" . ' />")
       }
       $("#viewer_modal .modal-content video,#viewer_modal .modal-content img").remove()
       $("#viewer_modal .modal-content").append(view)
@@ -168,7 +166,7 @@ echo '
             })
             end_loader()  
   }
-    window.uni_modal = function($title = '."''".' , $url='."''".',$size=""){
+    window.uni_modal = function($title = ' . "''" . ' , $url=' . "''" . ',$size=""){
         start_loader()
         $.ajax({
             url:$url,
@@ -180,7 +178,7 @@ echo '
                 if(resp){
                     $("#uni_modal .modal-title").html($title)
                     $("#uni_modal .modal-body").html(resp)
-                    if($size != '."''".'){
+                    if($size != ' . "''" . '){
                         $("#uni_modal .modal-dialog").addClass($size+" modal-dialog-centered")
                     }else{
                         $("#uni_modal .modal-dialog").removeAttr("class").addClass("modal-dialog modal-md modal-dialog-centered")
@@ -196,7 +194,7 @@ echo '
             }
         })
     }
-    window._conf = function($msg='."''".',$func='."''".',$params = []){
+    window._conf = function($msg=' . "''" . ',$func=' . "''" . ',$params = []){
        $("#confirm_modal #confirm").attr("onclick",$func+"("+$params.join(",")+")")
        $("#confirm_modal .modal-body").html($msg)
        $("#confirm_modal").modal("show")
@@ -214,8 +212,7 @@ echo '
 <script src="http://localhost/php-spms/assets/vendor/php-email-form/validate.js"></script>
 <script src="http://localhost/php-spms/assets/js/main.js"></script>  </body>
 </html>';
-}
-else{
+} else {
   echo '<script>
     window.location.href =
         "login.php";
