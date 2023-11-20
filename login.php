@@ -27,9 +27,9 @@
 
         .container {
             border: 2px solid #039efc;
-            width: 40%;
+            width: 30%;
             margin: 80px auto;
-            padding: 40px;
+            padding: 10px 40px;
             text-align: center;
             border-radius: 20px;
             box-shadow: 5px 5px 10px black;

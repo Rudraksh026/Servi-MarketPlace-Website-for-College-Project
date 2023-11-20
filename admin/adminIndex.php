@@ -38,7 +38,7 @@ if (isset($_SESSION["username"])) {
           <h1>Home</h1>
           <nav>
               <ol class="breadcrumb">
-                <li class="breadcrumb-item selected"><a href="http://localhost/php-spms//admin">Dashboard</a></li>
+                <li class="breadcrumb-item selected"><a href="adminIndex.php">Dashboard</a></li>
                               </ol>
           </nav>
         </div>

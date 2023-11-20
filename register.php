@@ -110,18 +110,8 @@
                 <input type="text" id="fname" name="fname" required>
             </div>
             <div>
-                <?php
-                echo '<label for="location">Location<br></label>
-                    <select name="location" id="location" required>
-                    ';
-                $sql = "SELECT DISTINCT location FROM service_details;";
-                $result = mysqli_query($conn, $sql);
-                while ($data = mysqli_fetch_assoc($result)) {
-                    echo '<option value=' . $data['location'] . '>' . $data['location'] . '</option>';
-                }
-                echo '
-                    </select>';
-                ?>
+                <label for="location">Location<br></label>
+                <input type="text" id="location" name="location" required>
             </div>
             <div>
                 <label for="birthday">Birthday<br></label>

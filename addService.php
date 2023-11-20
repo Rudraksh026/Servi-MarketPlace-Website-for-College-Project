@@ -159,11 +159,12 @@ if (isset($_SESSION['adminName'])) {
                     <div>
                         <label for="location">Location<br></label>
                         <select name="location" id="location" required>
+                        <option value="none" selected disabled hidden>Select an Option</option>
                         ';
-    $sql = "SELECT DISTINCT location FROM service_details;";
+    $sql = "SELECT * FROM `locate`;";
     $result = mysqli_query($conn, $sql);
     while ($data = mysqli_fetch_assoc($result)) {
-        echo '<option value=' . $data['location'] . '>' . $data['location'] . '</option>';
+        echo '<option value=' . $data['locationName'] . '>' . $data['locationName'] . '</option>';
     }
     echo '
                         </select>

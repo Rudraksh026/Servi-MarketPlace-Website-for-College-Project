@@ -191,13 +191,13 @@ if (isset($_SESSION['adminName'])) {
                             <label for="location">Location<br></label>
                             <select name="location" id="location" required>
                         ';
-            $sql = "SELECT DISTINCT location FROM service_details;";
+            $sql = "SELECT * FROM `locate`;";
             $result = mysqli_query($conn, $sql);
             while ($data = mysqli_fetch_assoc($result)) {
-                if ($data["location"] == $location) {
-                    echo '<option value=' . $data['location'] . ' selected>' . $data['location'] . '</option>';
+                if ($data["locationName"] == $location) {
+                    echo '<option value=' . $data['locationName'] . ' selected>' . $data['locationName'] . '</option>';
                 } else {
-                    echo '<option value=' . $data['location'] . '>' . $data['location'] . '</option>';
+                    echo '<option value=' . $data['locationName'] . '>' . $data['locationName'] . '</option>';
                 }
             }
             echo '
