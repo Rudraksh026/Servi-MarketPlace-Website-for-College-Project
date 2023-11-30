@@ -162,7 +162,12 @@ if (isset($_SESSION["username"])) {
 					</thead>
 					<tbody>
           ';
-  $sql = "SELECT * FROM `service_details`";
+  
+  if(isset($_POST['delete'])){
+    $sno = $_POST['delete'];
+    $sql = 'DELETE FROM `service_details` WHERE `sno` = '.$sno.'';
+    $result = mysqli_query($conn, $sql);
+    $sql = "SELECT * FROM `service_details`";
   $result = mysqli_query($conn, $sql);
   $i = 1;
   while ($row = mysqli_fetch_array($result)) {
@@ -191,7 +196,53 @@ if (isset($_SESSION["username"])) {
                                         <button>Edit</button>
                                     </form>
 								</td>
+								<td class="align-items-center" align="center">
+									<form action="list.php" method="post">
+                                        <input class="hidden" type="number" name="delete" value="' . $row['sno'] . '"">
+                                        <button>Delete</button>
+                                    </form>
+								</td>
 							</tr>';
+  }
+  }
+  else{
+    $sql = "SELECT * FROM `service_details`";
+  $result = mysqli_query($conn, $sql);
+  $i = 1;
+  while ($row = mysqli_fetch_array($result)) {
+    echo '<tr>
+								<td class="align-items-center text-center">
+                <form action = "view.php" method="post">
+                <input name="sno" type="text" value="' . $row['sno'] . '" style="display:none">
+                <button class="button button1">View</button>
+                </form>
+                </td>
+								<td class="align-items-center">' . $row['email'] . '</td>
+								<td class="align-items-center">' . $row['name'] . '</td>
+								<td class="align-items-center">
+                                ' . $row['service'] . '
+								</td>
+								<td class="align-items-center text-center">';
+    if ($row['active'] == '0') {
+      echo '<span class="badge bg-danger px-3 rounded-pill">InActive</span>';
+    } else {
+      echo '<span class="badge bg-success px-3 rounded-pill">Active</span>';
+    }
+    echo '									</td>
+								<td class="align-items-center" align="center">
+									<form action="edit.php" method="post">
+                                        <input class="hidden" type="number" name="edit" value="' . $row['sno'] . '"">
+                                        <button>Edit</button>
+                                    </form>
+								</td>
+								<td class="align-items-center" align="center">
+									<form action="list.php" method="post">
+                                        <input class="hidden" type="number" name="delete" value="' . $row['sno'] . '"">
+                                        <button>Delete</button>
+                                    </form>
+								</td>
+							</tr>';
+  }
   }
   echo '</tbody>
 				</table>

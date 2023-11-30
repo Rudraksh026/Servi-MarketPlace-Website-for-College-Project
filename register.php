@@ -161,9 +161,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "SELECT * FROM `user_detail` WHERE `email` LIKE '$email';";
     $result = mysqli_query($conn, $sql);
     $rows = mysqli_num_rows($result);
-    if ($password == $cpassword && $rows == 0) {
+    $today = date("Y-m-d");
+    $num_length = strlen($number);
+    $arr = explode('@', $email);
+    $int_num = number_format($number);
+    preg_match_all('!\d+!', $name, $matches); 
+    if (((count($matches[0])) == 0) && ($int_num < 9999999999 || $int_num > 6000000000) && $password == $cpassword && $rows == 0 && $birthday < $today && $num_length == 10 && ($arr[1] == "gamil.com" || $arr[1] == "yahoo.com" || $arr[1] == "hotmail.com" || $arr[1] == "outlook.com" )) {
 
-        // insert into database
+        
         $sql = "INSERT INTO `user_detail` ( `name`, `birthday`, `gender`, `email`, `number`, `password`, `created on`,`location`) VALUES ( '$name', '$birthday', '$gender', '$email', '$number', '$password', current_timestamp(),'$location');";
         $result = mysqli_query($conn, $sql);
         if ($result) {
@@ -177,9 +182,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             });</script>';
         }
     } else if ($password != $cpassword) {
-        echo '<script>swal ( "Oops" ,  "Password must be same!" ,  "error" );</script>';
-    } else {
-        echo '<script>swal ( "Oops" ,  "Account must be exists!" ,  "error" );</script>';
+        echo '<script>swal ( "Oops" ,  "Password must be same !" ,  "error" );</script>';
+    } 
+
+    else if ($num_length != 10 || ($int_num > 9999999999 || $int_num < 6000000000)){
+        echo '<script>swal ( "Oops" ,  "Phone number is not valid !" ,  "error" );</script>';
+    } 
+
+    else if ((count($matches[0])) > 0) {
+        echo '<script>swal ( "Oops" ,  "Name does not contain any digit !" ,  "error" );</script>';
+    }
+
+    else if ($birthday >= $today)
+    {
+        echo '<script>swal ( "Oops" ,  "Birth date is not valid !" ,  "error" );</script>';
+    }
+
+    else if ($arr[1] != "gamil.com" || $arr[1] != "yahoo.com" || $arr[1] != "hotmail.com" || $arr[1] != "outlook.com" ){
+        echo '<script>swal ( "Oops" ,  "Email is invalid !" ,  "error" );</script>';
+    }
+    
+    else if($rows != 0) {
+        echo '<script>swal ( "Oops" ,  "Account must be exists !" ,  "error" );</script>';
+    }
+
+    else {
+        echo '<script>swal ( "Oops" ,  "Invalid Details !" ,  "error" );</script>';
     }
 }
 ?>

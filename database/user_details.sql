@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 20, 2023 at 06:59 PM
+-- Generation Time: Nov 21, 2023 at 06:51 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `user_detail`
+-- Database: `user_details`
 --
 
 -- --------------------------------------------------------
@@ -277,7 +277,86 @@ INSERT INTO `service_details` (`sno`, `name`, `email`, `gender`, `number`, `loca
 (175, 'Sourabh', 'sourabh93@gmail.com', 'M', 6607127680, 'New Tehri', 'Travel agency', 5108, 'avatar1.jpg', 0),
 (176, 'Anshu', 'anshu43@gmail.com', 'M', 6367102297, 'Dhalwala', 'Legal work', 9304, 'avatar3.jpeg', 0),
 (177, 'Shivansh', 'shivansh43@gmail.com', 'M', 6399488556, 'Devprayag', 'Travel agency', 12373, 'avatar1.jpg', 0),
-(178, 'Arnav', 'arnav93@gmail.com', 'M', 7662443081, 'Hindolakhal', 'Financial services', 6606, 'avatar3.jpeg', 1);
+(178, 'Arnav', 'arnav93@gmail.com', 'M', 7662443081, 'Hindolakhal', 'Financial services', 6606, 'avatar3.jpeg', 1),
+(179, 'Ankit', 'ankit123@gmail.com', 'M', 9117763217, 'Kanatal', 'Designer', 5209, 'avatar1.jpg', 0),
+(180, 'Anushka', 'anushka123@gmail.com', 'M', 8892918914, 'Kirtinagar', 'Developer', 9723, 'avatar3.jpeg', 1),
+(181, 'Anshul', 'anshul123@gmail.com', 'M', 6154781201, 'Devprayag', 'Electrician', 13431, 'avatar3.jpeg', 0),
+(182, 'Aman', 'aman123@gmail.com', 'M', 7922544939, 'Dhalwala', 'Plumber', 13136, 'avatar1.jpg', 0),
+(183, 'Anuj', 'anuj123@gmail.com', 'M', 8064102142, 'Dhanaulti', 'Constructor', 10912, 'avatar3.jpeg', 1),
+(184, 'Akriti', 'akriti13@gmail.com', 'F', 8111520165, 'Makhlanu', 'Insurance', 6212, 'avatar2.png', 0),
+(185, 'Akash', 'akash123@gmail.com', 'M', 7238787822, 'Muni Ki Reti', 'Travel agency', 11225, 'avatar1.jpg', 1),
+(186, 'Ajay', 'ajay123@gmail.com', 'M', 8628706133, 'Gangi', 'Financial service', 12570, 'avatar3.jpeg', 0),
+(187, 'Anjali', 'anjali53@gmail.com', 'F', 6851729191, 'Ghansali', 'Medical', 6599, 'avatar4.jpeg', 0),
+(188, 'Anjay', 'anjay423@gmail.com', 'M', 8106942886, 'NarendraNagar', 'Legal work', 12140, 'avatar1.jpg', 1),
+(189, 'Anusulia', 'anusulia423@gmail.com', 'F', 7192894273, 'New Tehri', 'Tutor', 12109, 'avatar2.png', 1),
+(190, 'Abhay', 'abhay123@gmail.com', 'M', 8794895610, 'Gaja', 'Sport academy', 11338, 'avatar3.jpeg', 1),
+(191, 'Boby', 'boby123@gmail.com', 'M', 7913204597, 'Fakot', ' Music Academy', 6071, 'avatar1.jpg', 1),
+(192, 'Bittu', 'bittu423@gmail.com', 'M', 9857126512, 'Hindolakhal', 'Dance Academy', 9107, 'avatar3.jpeg', 1),
+(193, 'Balveer', 'balveer423@gmail.com', 'M', 6231967243, 'AgraKhal', 'Freelancer', 6628, 'avatar1.jpg', 1),
+(194, 'Balram', 'balram123@gmail.com', 'M', 9628274758, 'Kanatal', 'Carpenter', 5868, 'avatar3.jpeg', 0),
+(195, 'Bageshwar', 'bageshwar123@gmail.com', 'M', 9523746049, 'Kirtinagar', 'Devlivery', 9058, 'avatar3.jpeg', 0),
+(196, 'Bipasha', 'bipasha123@gmail.com', 'M', 8338812341, 'Devprayag', 'Editor ', 7653, 'avatar1.jpg', 0),
+(197, 'Suraj ', 'suraj123@gmail.com', 'M', 9027798466, 'Dhalwala', 'Designer', 8406, 'avatar3.jpeg', 1),
+(198, 'Rishabh', 'rishabh123@gmail.com', 'M', 6052245722, 'Dhanaulti', 'Developer', 12710, 'avatar3.jpeg', 0),
+(199, 'Uttam', 'uttam123@gmail.com', 'M', 6386786130, 'Makhlanu', 'Electrician', 7709, 'avatar1.jpg', 1),
+(200, 'Jagdish', 'jagdish123@gmail.com', 'M', 7463545500, 'Muni Ki Reti', 'Plumber', 9483, 'avatar3.jpeg', 1),
+(201, 'Jitendra', 'jitendra123@gmail.com', 'M', 8700489517, 'Gangi', 'Constructor', 14896, 'avatar3.jpeg', 0),
+(202, 'Mohit', 'mohit123@gmail.com', 'M', 9763545358, 'Ghansali', 'Insurance', 10007, 'avatar3.jpeg', 0),
+(203, 'Mohan', 'mohan423@gmail.com', 'M', 9017345881, 'NarendraNagar', 'Travel agency', 9404, 'avatar1.jpg', 0),
+(204, 'Rudraksh', 'rudraksh423@gmail.com', 'M', 6205315645, 'New Tehri', 'Financial service', 8392, 'avatar3.jpeg', 1),
+(205, 'Priya', 'priya023@gmail.com', 'F', 6271655663, 'Gaja', 'Medical', 8455, 'avatar4.jpeg', 1),
+(206, 'Sumit', 'sumit123@gmail.com', 'M', 8345431895, 'Fakot', 'Legal work', 5880, 'avatar1.jpg', 0),
+(207, 'Preeti', 'preeti423@gmail.com', 'F', 6438770597, 'Hindolakhal', 'Tutor', 5524, 'avatar2.png', 0),
+(208, 'Aditi', 'aditi423@gmail.com', 'M', 9441899659, 'AgraKhal', 'Sport academy', 6759, 'avatar3.jpeg', 1),
+(209, 'Nikita', 'nikita453@gmail.com', 'F', 7359162559, 'Kanatal', ' Music Academy', 5998, 'avatar4.jpeg', 0),
+(210, 'Muskan', 'muskan43@gmail.com', 'F', 6732127816, 'Kirtinagar', 'Dance Academy', 13970, 'avatar2.png', 1),
+(211, 'Sana', 'sana893@gmail.com', 'F', 8401181404, 'Devprayag', 'Freelancer', 5113, 'avatar4.jpeg', 1),
+(212, 'Kamkhaya', 'kamkhaya453@gmail.com', 'F', 7538262032, 'Dhalwala', 'Carpenter', 10193, 'avatar2.png', 0),
+(213, 'Kamini', 'kamini45@gmail.com', 'F', 6104967421, 'Dhanaulti', 'Devlivery', 6721, 'avatar4.jpeg', 0),
+(214, 'Anjali', 'anjali123@gmail.com', 'F', 9624723994, 'Makhlanu', 'Editor ', 13365, 'avatar2.png', 0),
+(215, 'Sonam', 'sonam123@gmail.com', 'F', 9547737872, 'Muni Ki Reti', 'Designer', 10490, 'avatar4.jpeg', 0),
+(216, 'Sonakshi', 'sonakshi123@gmail.com', 'F', 9638547084, 'Gangi', 'Developer', 6577, 'avatar4.jpeg', 1),
+(217, 'Kiran', 'kiran123@gmail.com', 'F', 8610889785, 'Ghansali', 'Electrician', 13592, 'avatar4.jpeg', 1),
+(218, 'Simran', 'simran423@gmail.com', 'F', 8191420015, 'NarendraNagar', 'Plumber', 13404, 'avatar2.png', 1),
+(219, 'Nandini', 'nandini423@gmail.com', 'F', 6667854980, 'New Tehri', 'Constructor', 12745, 'avatar4.jpeg', 1),
+(220, 'Akshara', 'akshara123@gmail.com', 'F', 6117191262, 'Gaja', 'Insurance', 12933, 'avatar4.jpeg', 0),
+(221, 'Rashi', 'rashi123@gmail.com', 'F', 6982392307, 'Fakot', 'Travel agency', 11266, 'avatar4.jpeg', 1),
+(222, 'Gaurav', 'gaurav423@gmail.com', 'M', 6882706010, 'Hindolakhal', 'Financial service', 8246, 'avatar3.jpeg', 0),
+(223, 'Gopal', 'gopal423@gmail.com', 'F', 6271767562, 'AgraKhal', 'Medical', 14932, 'avatar2.png', 0),
+(224, 'Rahul', 'rahul123@gmail.com', 'M', 9728199555, 'Kanatal', 'Legal work', 14139, 'avatar1.jpg', 0),
+(225, 'Ayush', 'ayush123@gmail.com', 'M', 6054183927, 'Kirtinagar', 'Tutor', 12134, 'avatar1.jpg', 0),
+(226, 'Deepak', 'deepak123@gmail.com', 'M', 9020649102, 'Devprayag', 'Sport academy', 11689, 'avatar3.jpeg', 0),
+(227, 'Dinesh', 'dinesh123@gmail.com', 'M', 9862359528, 'Dhalwala', ' Music Academy', 11032, 'avatar3.jpeg', 0),
+(228, 'Dheeraj', 'dheeraj123@gmail.com', 'M', 8923132316, 'Dhanaulti', 'Dance Academy', 5679, 'avatar1.jpg', 1),
+(229, 'Dipanshu', 'dipanshu123@gmail.com', 'M', 8492300157, 'Makhlanu', 'Freelancer', 10305, 'avatar3.jpeg', 1),
+(230, 'Rohit', 'rohit123@gmail.com', 'M', 6413066071, 'Muni Ki Reti', 'Carpenter', 9903, 'avatar3.jpeg', 0),
+(231, 'Ronik', 'ronik123@gmail.com', 'M', 7204899390, 'Gangi', 'Devlivery', 9775, 'avatar1.jpg', 1),
+(232, 'Ritik', 'ritik123@gmail.com', 'M', 7307786658, 'Ghansali', 'Editor ', 6163, 'avatar3.jpeg', 0),
+(233, 'Amit', 'amit423@gmail.com', 'M', 6298780509, 'NarendraNagar', 'Designer', 9270, 'avatar1.jpg', 1),
+(234, 'Rockey', 'rockey423@gmail.com', 'M', 7506804893, 'New Tehri', 'Developer', 11386, 'avatar1.jpg', 0),
+(235, 'Himanshu', 'himanshu123@gmail.com', 'M', 8352862726, 'Gaja', 'Electrician', 13781, 'avatar3.jpeg', 1),
+(236, 'Nihal', 'nihal123@gmail.com', 'M', 6911993612, 'Fakot', 'Plumber', 9431, 'avatar3.jpeg', 1),
+(237, 'Jatin', 'jatin423@gmail.com', 'M', 9130800801, 'Hindolakhal', 'Constructor', 9915, 'avatar3.jpeg', 0),
+(238, 'Anisha', 'anisha423@gmail.com', 'M', 6625671579, 'AgraKhal', 'Insurance', 5377, 'avatar1.jpg', 0),
+(239, 'Amarjeet', 'amarjeet123@gmail.com', 'M', 6904341547, 'Kanatal', 'Travel agency', 7117, 'avatar3.jpeg', 1),
+(240, 'Deepak', 'deepak123@gmail.com', 'M', 9949405447, 'Kirtinagar', 'Financial service', 6945, 'avatar3.jpeg', 1),
+(241, 'Sanandan ', 'sanandan123@gmail.com', 'M', 9633701001, 'Devprayag', 'Medical', 7330, 'avatar1.jpg', 1),
+(242, 'Abhishek', 'abhishek123@gmail.com', 'M', 7916311250, 'Dhalwala', 'Legal work', 5214, 'avatar3.jpeg', 1),
+(243, 'Prabhakar', 'prabhakar123@gmail.com', 'M', 6879942823, 'Dhanaulti', 'Tutor', 11001, 'avatar3.jpeg', 0),
+(244, 'Mitul', 'mitul123@gmail.com', 'M', 6416051573, 'Makhlanu', 'Sport academy', 10255, 'avatar1.jpg', 0),
+(245, 'Bhanu', 'bhanu123@gmail.com', 'M', 7392083797, 'Muni Ki Reti', ' Music Academy', 7764, 'avatar1.jpg', 0),
+(246, 'Swati', 'swati123@gmail.com', 'F', 8726759955, 'Gangi', 'Dance Academy', 7411, 'avatar4.jpeg', 0),
+(247, 'Mahak', 'mahak123@gmail.com', 'F', 8175404829, 'Ghansali', 'Freelancer', 11532, 'avatar4.jpeg', 1),
+(248, 'Ayushi', 'ayushi423@gmail.com', 'F', 9441707593, 'NarendraNagar', 'Carpenter', 14858, 'avatar2.png', 1),
+(249, 'Nitish', 'nitish423@gmail.com', 'M', 8753853109, 'New Tehri', 'Devlivery', 13757, 'avatar3.jpeg', 1),
+(250, 'Saurabh', 'saurabh123@gmail.com', 'M', 9658671328, 'Gaja', 'Editor ', 11955, 'avatar3.jpeg', 0),
+(251, 'Neeraj', 'neeraj123@gmail.com', 'M', 7972264643, 'Fakot', 'Designer', 11629, 'avatar3.jpeg', 1),
+(252, 'Vasu', 'vasu423@gmail.com', 'M', 9824582192, 'Hindolakhal', 'Developer', 12272, 'avatar1.jpg', 0),
+(253, 'Pankaj', 'pankaj423@gmail.com', 'M', 8297987484, 'AgraKhal', 'Electrician', 10490, 'avatar1.jpg', 1),
+(254, 'Rajkumar', 'rajkumar123@gmail.com', 'M', 6958800863, 'Kanatal', 'Plumber', 13386, 'avatar3.jpeg', 1),
+(255, 'Rani', 'rani123@gmail.com', 'M', 9857643066, 'Kirtinagar', 'Constructor', 5774, 'avatar1.jpg', 1),
+(256, 'Krishna', 'krishna123@gmail.com', 'M', 7563278356, 'Devprayag', 'Insurance', 7079, 'avatar3.jpeg', 1),
+(257, 'Nayra', 'nayra123@gmail.com', 'F', 6114975998, 'Dhalwala', 'Travel agency', 13813, 'avatar4.jpeg', 1);
 
 -- --------------------------------------------------------
 
@@ -346,7 +425,7 @@ ALTER TABLE `user_detail`
 -- AUTO_INCREMENT for table `service_details`
 --
 ALTER TABLE `service_details`
-  MODIFY `sno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=179;
+  MODIFY `sno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=258;
 
 --
 -- AUTO_INCREMENT for table `user_detail`

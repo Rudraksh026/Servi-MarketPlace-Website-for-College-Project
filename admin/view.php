@@ -3,7 +3,7 @@
 <?php
 session_start();
 include "../dp.php";
-if (isset($_SESSION['adminName'])) {
+if (isset($_SESSION['username'])) {
     echo '<!DOCTYPE html>
         <html lang="en">
         <head>

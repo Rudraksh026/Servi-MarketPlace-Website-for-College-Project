@@ -16,11 +16,6 @@
             box-sizing: border-box;
         }
 
-        body {
-            background: url('img/login_signup_background.gif');
-            background-repeat: no-repeat;
-        }
-
         .index_main {
             margin: auto;
             width: 90%;
@@ -35,7 +30,7 @@
         .index_left,
         .index_right {
             max-width: 50%;
-            color: white;
+            color: black;
         }
 
         h1 {
@@ -63,7 +58,7 @@
         }
 
         button:hover {
-            box-shadow: 7px 7px 0px white;
+            box-shadow: 7px 7px 0px black;
             cursor: pointer;
         }
 
@@ -84,13 +79,12 @@
     <div class="index_main">
         <img class="index_left index_img" src="img/index_main_service.png" alt="" width="100%">
         <div class="index_right">
-            <h1><b>Service <br>Providing</h1>
-            <p>Find amazing services at your door step
-                <br> tailored for you. Handy connects you
-                <br> with amazing professionals.
+            <h1><b>Service <br>MarketPlace</h1>
+            <h3>You can find the Service at Tehri Gharwal District</h3>
+            <p>We connect service providers with consumers or businesses in need of specific services. These platforms create a digital marketplace where individuals or companies can offer their skills, expertise, or services, and potential clients can find and hire them.
             </p>
             <a href="login.php"><button>
-                    <p> Find a professional</p>
+                    <p> Find a Services</p>
                 </button></a>
         </div>
     </div>
