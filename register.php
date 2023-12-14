@@ -1,19 +1,64 @@
-<!DOCTYPE html>
+
+
+<?php
+include 'icon.php';
+include 'dp.php';
+    $name = "";
+    $birthday = "";
+    $gender = "";
+    $email = "";
+    $number = "";
+    $password = "";
+    $cpassword = "";
+    $location = "";
+    
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name = $_POST['fname'];
+    $birthday = $_POST['birthday'];
+    $gender = $_POST['gender'];
+    $email = $_POST['email'];
+    $number = $_POST['number'];
+    $password = $_POST['password'];
+    $cpassword = $_POST['cpassword'];
+    $location = $_POST['location'];
+    $sql = "SELECT * FROM `user_detail` WHERE `email` LIKE '$email';";
+    $result = mysqli_query($conn, $sql);
+    $rows = mysqli_num_rows($result);
+    $today = date("Y-m-d");
+    $num_length = strlen($number);
+    $arr = explode('@', $email,2);
+    $int_num = number_format($number);
+    preg_match_all('!\d+!', $name, $matches); 
+    if (((count($matches[0])) == 0) && ($int_num < 9999999999 || $int_num > 6000000000) && $password == $cpassword && $rows == 0 && $birthday < $today && $num_length == 10 && ($arr[1] == "gmail.com" || $arr[1] == "yahoo.com" || $arr[1] == "hotmail.com" || $arr[1] == "outlook.com" )) {
+
+        
+        $sql = "INSERT INTO `user_detail` ( `name`, `birthday`, `gender`, `email`, `number`, `password`, `created on`,`location`) VALUES ( '$name', '$birthday', '$gender', '$email', '$number', '$password', current_timestamp(),'$location');";
+        $result = mysqli_query($conn, $sql);
+        $name = "";
+    $birthday = "";
+    $gender = "";
+    $email = "";
+    $number = "";
+    $password = "";
+    $cpassword = "";
+    $location = "";
+        
+    } 
+    
+}
+echo '<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <?php
-    include 'icon.php';
-    include 'dp.php';
-    ?>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+        @import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
 
         * {
-            font-family: 'Varela Round', sans-serif;
+            font-family: "Varela Round", sans-serif;
             box-sizing: border-box;
             color: black;
             margin: 0;
@@ -107,15 +152,17 @@
 
             <div>
                 <label for="fname">First Name<br></label>
-                <input type="text" id="fname" name="fname" required>
+                <input type="text" id="fname" name="fname" value="'.$name.'" required>
             </div>
             <div>
                 <label for="location">Location<br></label>
-                <input type="text" id="location" name="location" required>
+                <input type="text" id="location" name="location" value="'.$location.'" required>
             </div>
             <div>
                 <label for="birthday">Birthday<br></label>
-                <input type="date" id="birthday" name="birthday" required>
+                <input type="date" id="birthday" name="birthday" value="'.$birthday.'" max="'.
+                date("Y-m-d")
+                .'" required>
             </div>
             <div>
                 <label>Gender<br></label>
@@ -125,11 +172,11 @@
             </div>
             <div>
                 <label for="email">Email<br></label>
-                <input type="email" id="email" name="email" required>
+                <input type="email" id="email" name="email" value="'.$email.'" required>
             </div>
             <div>
                 <label for="phoneNo">Phone Number<br></label>
-                <input type="number" id="phoneNo" name="number" required>
+                <input type="number" id="phoneNo" value="'.$number.'" name="number" min="6000000000" max="9999999999" maxlength="10" minlength="10" required>
             </div>
             <div>
                 <label for="password">Password<br></label>
@@ -145,69 +192,41 @@
     <script src="javaScript/sweetalert.mn.js"></script>
 </body>
 
-</html>
+</html>';
+if ($password != $cpassword) {
+    echo '<script>swal ( "Oops" ,  "Password must be same !" ,  "error" );</script>';
+} 
 
-<?php
-include 'dp.php';
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = $_POST['fname'];
-    $birthday = $_POST['birthday'];
-    $gender = $_POST['gender'];
-    $email = $_POST['email'];
-    $number = $_POST['number'];
-    $password = $_POST['password'];
-    $cpassword = $_POST['cpassword'];
-    $location = $_POST['location'];
-    $sql = "SELECT * FROM `user_detail` WHERE `email` LIKE '$email';";
-    $result = mysqli_query($conn, $sql);
-    $rows = mysqli_num_rows($result);
-    $today = date("Y-m-d");
-    $num_length = strlen($number);
-    $arr = explode('@', $email);
-    $int_num = number_format($number);
-    preg_match_all('!\d+!', $name, $matches); 
-    if (((count($matches[0])) == 0) && ($int_num < 9999999999 || $int_num > 6000000000) && $password == $cpassword && $rows == 0 && $birthday < $today && $num_length == 10 && ($arr[1] == "gamil.com" || $arr[1] == "yahoo.com" || $arr[1] == "hotmail.com" || $arr[1] == "outlook.com" )) {
+if ($num_length != 10 || ($int_num > 9999999999 || $int_num < 6000000000)){
+    echo '<script>swal ( "Oops" ,  "Phone number is not valid !" ,  "error" );</script>';
+} 
 
-        
-        $sql = "INSERT INTO `user_detail` ( `name`, `birthday`, `gender`, `email`, `number`, `password`, `created on`,`location`) VALUES ( '$name', '$birthday', '$gender', '$email', '$number', '$password', current_timestamp(),'$location');";
-        $result = mysqli_query($conn, $sql);
-        if ($result) {
-            session_start();
-            $_SESSION['adminName'] = $name;
-            $_SESSION['email'] = $email;
-            echo '<script>swal("Register successful!", "Login Now!", "success")
-            .then((value) => {
-                window.location.href =
-                    "login.php";
-            });</script>';
-        }
-    } else if ($password != $cpassword) {
-        echo '<script>swal ( "Oops" ,  "Password must be same !" ,  "error" );</script>';
-    } 
-
-    else if ($num_length != 10 || ($int_num > 9999999999 || $int_num < 6000000000)){
-        echo '<script>swal ( "Oops" ,  "Phone number is not valid !" ,  "error" );</script>';
-    } 
-
-    else if ((count($matches[0])) > 0) {
-        echo '<script>swal ( "Oops" ,  "Name does not contain any digit !" ,  "error" );</script>';
-    }
-
-    else if ($birthday >= $today)
-    {
-        echo '<script>swal ( "Oops" ,  "Birth date is not valid !" ,  "error" );</script>';
-    }
-
-    else if ($arr[1] != "gamil.com" || $arr[1] != "yahoo.com" || $arr[1] != "hotmail.com" || $arr[1] != "outlook.com" ){
-        echo '<script>swal ( "Oops" ,  "Email is invalid !" ,  "error" );</script>';
-    }
-    
-    else if($rows != 0) {
-        echo '<script>swal ( "Oops" ,  "Account must be exists !" ,  "error" );</script>';
-    }
-
-    else {
-        echo '<script>swal ( "Oops" ,  "Invalid Details !" ,  "error" );</script>';
-    }
+if ((count($matches[0])) > 0) {
+    echo '<script>swal ( "Oops" ,  "Name does not contain any digit !" ,  "error" );</script>';
 }
+
+if ($birthday >= $today)
+{
+    echo '<script>swal ( "Oops" ,  "Birth date is not valid !" ,  "error" );</script>';
+}
+
+if ($arr[1] != "gmail.com" && $arr[1] != "yahoo.com" && $arr[1] != "hotmail.com" && $arr[1] != "outlook.com" ){
+    echo '<script>swal ( "Oops" ,  "Email is invalid !" ,  "error" );</script>';
+}
+
+if($rows != 0) {
+    echo '<script>swal ( "Oops" ,  "Account must be exists !" ,  "error" );</script>';
+}
+
+if ($result) {
+    session_start();
+    $_SESSION['adminName'] = $name;
+    $_SESSION['email'] = $email;
+    echo '<script>swal("Register successful!", "Login Now!", "success")
+    .then((value) => {
+        window.location.href =
+            "login.php";
+    });</script>';
+}
+
 ?>

@@ -226,7 +226,7 @@ if (isset($_SESSION["username"])) {
                 $new_img_name = uniqid("IMG-", true) . '.' . $img_ex_lc;
                 $img_upload_path = '../uploads/' . $new_img_name;
                 move_uploaded_file($tmp_name, $img_upload_path);
-                if (((count($matches[0])) == 0) && ($int_num < 9999999999 || $int_num > 6000000000) && $num_length == 10 && ($arr[1] == "gamil.com" || $arr[1] == "yahoo.com" || $arr[1] == "hotmail.com" || $arr[1] == "outlook.com" )) {
+                if (((count($matches[0])) == 0) && ($int_num < 9999999999 || $int_num > 6000000000) && $num_length == 10 && ($arr[1] == "gmail.com" || $arr[1] == "yahoo.com" || $arr[1] == "hotmail.com" || $arr[1] == "outlook.com" )) {
 
                 $sql = "INSERT INTO `service_details` (`name`, `email`, `gender`, `number`, `location`, `service`, `amount`,`image_url`,`active`) VALUES ('$name', '$email', '$gender', $number, '$location', '$service', $amount,'$new_img_name','$status');";
                 $result = mysqli_query($conn, $sql);
@@ -237,17 +237,8 @@ if (isset($_SESSION["username"])) {
                     "list.php";
             });</script>';
                 }
-            } else {
-                ?>
-                <script>swal("Oops", "Invalid Image Type!", "error");</script>
-                <?php
-            }
-        }
-        else if ($password != $cpassword) {
-            echo '<script>swal ( "Oops" ,  "Password must be same !" ,  "error" );</script>';
-        } 
-    
-        else if ($num_length != 10 || ($int_num > 9999999999 || $int_num < 6000000000)){
+            } 
+            else if ($num_length != 10 || ($int_num > 9999999999 || $int_num < 6000000000)){
             echo '<script>swal ( "Oops" ,  "Phone number is not valid !" ,  "error" );</script>';
         } 
     
@@ -255,22 +246,22 @@ if (isset($_SESSION["username"])) {
             echo '<script>swal ( "Oops" ,  "Name does not contain any digit !" ,  "error" );</script>';
         }
     
-        else if ($birthday >= $today)
-        {
-            echo '<script>swal ( "Oops" ,  "Birth date is not valid !" ,  "error" );</script>';
-        }
     
-        else if ($arr[1] != "gamil.com" || $arr[1] != "yahoo.com" || $arr[1] != "hotmail.com" || $arr[1] != "outlook.com" ){
+        else if ($arr[1] != "gmail.com" && $arr[1] != "yahoo.com" && $arr[1] != "hotmail.com" && $arr[1] != "outlook.com" ){
             echo '<script>swal ( "Oops" ,  "Email is invalid !" ,  "error" );</script>';
         }
         
-        else if($rows != 0) {
-            echo '<script>swal ( "Oops" ,  "Account must be exists !" ,  "error" );</script>';
-        }
     
         else {
             echo '<script>swal ( "Oops" ,  "Invalid Details !" ,  "error" );</script>';
         }
+        }
+    else {
+                ?>
+                <script>swal("Oops", "Invalid Image Type!", "error");</script>
+                <?php
+            }
+        
         }
     }
 } else {
