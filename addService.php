@@ -109,7 +109,7 @@ if (isset($_SESSION['adminName'])) {
                 <form action="addService.php" method="post" enctype="multipart/form-data">
                     <div>
                         <label for="fname">First Name<br></label>
-                        <input type="text" id="fname" name="fname" required>
+                        <input type="text" id="fname" name="fname" >
                     </div>
                     <div>
                         <label for="lname">Last Name<br></label>
@@ -117,24 +117,24 @@ if (isset($_SESSION['adminName'])) {
                     </div>
                     <div>
                         <label for="amount">Amount<br></label>
-                        <input type="number" id="amount" name="amount" required>
+                        <input type="number" id="amount" name="amount" >
                     </div>
                     <div>
                         <label>Gender<br></label>
-                        <input type="radio" name="gender" id="male" value="M" required><label for="male">Male</label>
-                        <input type="radio" name="gender" id="Female" value="F" required><label id="female" for="Female">Female</label>
+                        <input type="radio" name="gender" id="male" value="M" ><label for="male">Male</label>
+                        <input type="radio" name="gender" id="Female" value="F" ><label id="female" for="Female">Female</label>
                     </div>
                     <div>
                         <label for="email">Email<br></label>
-                        <input type="email" id="email" name="email" value="' . $_SESSION['email'] . '" required>
+                        <input type="email" id="email" name="email" value="' . $_SESSION['email'] . '" >
                     </div>
                     <div>
                         <label for="phoneNo">Phone Number<br></label>
-                        <input type="number" id="phoneNo" name="number" required>
+                        <input type="number" id="phoneNo" name="number" >
                     </div>
                     <div>
                         <label for="service">Service<br></label>
-                        <select name="service" id="service" required>
+                        <select name="service" id="service" >
                             <option value="none" selected disabled hidden>Select an Option</option>
                             <option value="Designer">Designer</option>
                             <option value="Developer">Developer</option>
@@ -158,7 +158,7 @@ if (isset($_SESSION['adminName'])) {
                     </div>
                     <div>
                         <label for="location">Location<br></label>
-                        <select name="location" id="location" required>
+                        <select name="location" id="location" >
                         <option value="none" selected disabled hidden>Select an Option</option>
                         ';
     $sql = "SELECT * FROM `locate`;";
