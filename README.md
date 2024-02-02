@@ -1,0 +1,1 @@
+In this packages you can easily get the known written code that are written by me. you can easily learn and understand it. it also contains the sql's queries on the database package so, you can easily create the databases for the project. 
